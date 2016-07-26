@@ -1,3 +1,6 @@
+import numpy as np
+import csv
+
 def ConvertCsvFileToNumPyTable(csv_name, data_type="int", num_columns=2):
   """
   Converts a CSV file with ints or floats to a NumPy table.
