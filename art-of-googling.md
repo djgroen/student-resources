@@ -1,6 +1,6 @@
-== Tips on how to use Google efficiently for finding solutions ==
+# Tips on how to use Google efficiently for finding solutions
 
-=== Programming issues ===
+## Programming issues
 
 When you don't know how to program a certain thing, try putting the following phrase in Google:
 
