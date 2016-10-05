@@ -17,3 +17,5 @@ http://matplotlib.org/users/pyplot_tutorial.html
 ## Useful reference material
 Piles of examples how to plot data using Matplotlib/pyplot (note the two rely on the same underlying library):
 http://matplotlib.org/examples/
+
+We also have a few Python examples in the python-examples subdirectory of this repository.
