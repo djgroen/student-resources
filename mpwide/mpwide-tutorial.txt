@@ -4,9 +4,9 @@ This tutorial has been made by Derek Groen. It is designed for MPWide 1.5d and l
 
 Part 1: First time setup
 
-1. Visit http://castle.strw.leidenuniv.nl/software/mpwide.html and download the latest MPWide tarball file (you can also use 'wget http://castle.strw.leidenuniv.nl/~derek/mpwide-1.5d.tar.gz' directly if convenient).
+1. Download MPWide at https://github.com/djgroen/MPWide/archive/master.zip
 
-2. Unzip the Tarball file on your local account on the grass1 or grass2 machine (or on any other Unix or Mac OSX machine of your liking). You should have obtained an account for the grass cluster this morning, during the MUSCLE tutorial.
+2. Unzip the zip file on your local account on a Unix or Mac OSX machine of your liking.
 
 3. Go to the main directory where you unpacked MPWide, and type "make".
 
