@@ -1,3 +1,6 @@
+
+* Before reporting a problem, always make sure that you have examined the existing documentation. Check the installation manuals and user guides of the relevant tool(s), and also check this repository for helpful information first.
+
 # How to report technical problems
 
 * Always write specifically what you are trying to accomplish, and what you are doing to accomplish it.
