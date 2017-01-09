@@ -3,6 +3,11 @@
 ## Super basic
 Absolute beginner introduction to Python:
 http://www.learnpython.org/
+or
+download 'Learn Python' application straight to your smartphones. 
+
+How to Think Like a Computer Scientist: Python (Interactive book)
+http://interactivepython.org/courselib/static/thinkcspy/index.html
 
 Introductory material to SciPy:
 http://www.scipy-lectures.org/
