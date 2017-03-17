@@ -1,5 +1,14 @@
 # General tips for Dissertation Writing for Level 2
 
+## Quantifying contributions
+* Make a table, containing in each column: 1-line summary of the contribution, type of contribution (design, frontend or backend), with whom you made the contribution, reference to the subsection in your portfolio that describes the contributions.
+
+## Defining contributions
+Describe:
+* What you exactly contributed.
+* Why did you things the way you did it? What are alternative ways of doing it, compare the pros/cons of your approach with the alternatives.
+* Motivate your considerations and design/implementations decisions using literature sources. (e.g., technical documents, scientific papers or reflective web articles).
+
 ## Writing 
 * Write clearly and concisely. Avoid using many complicated words and overly long sentences, particularly if you are aware that your English skills are limited.
 * Have every part of your dissertation proofread, ideally by different people.
@@ -11,3 +20,6 @@
 
 ## Self reflections
 * Avoid value judgements, such as "I did an outstanding job". Instead, provide specific examples of contributions and mention the observations upon which you base your self reflections.
+
+## Learning outcomes
+* Add body to your motivations by referring to relevant sections for details, but do not omit the main justification in the Table.
