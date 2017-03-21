@@ -3,6 +3,11 @@
 ## Super basic
 Absolute beginner introduction to Python:
 http://www.learnpython.org/
+or
+download 'Learn Python' application straight to your smartphones. 
+
+How to Think Like a Computer Scientist: Python (Interactive book)
+http://interactivepython.org/courselib/static/thinkcspy/index.html
 
 Introductory material to SciPy:
 http://www.scipy-lectures.org/
@@ -19,6 +24,9 @@ http://pandas.pydata.org/pandas-docs/stable/tutorials.html
 
 Pyplot tutorial for basic plotting with Python:
 http://matplotlib.org/users/pyplot_tutorial.html
+
+Basic tutorial for the logging module, to quickly create useful debug messages:
+http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-minute-quickstart-guide-to-pythons-logging-module/
 
 ## Useful reference material
 Piles of examples how to plot data using Matplotlib/pyplot (note the two rely on the same underlying library):
