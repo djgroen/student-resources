@@ -31,4 +31,6 @@ cython.py                     functools32-3.2.3_2.egg-info  mpi4py              
 
 for sure the Python modules matplotlib, six, pyparsing, dateutil and functools32.
 
+matplotlib also needs to be set up for grav_stellar.py, but for the time being that is recommended to be installed in a separate location, and its location to be appended to the $PYTHONPATH environment variable.
+
 
