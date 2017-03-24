@@ -21,13 +21,14 @@ Needs netcdf-dev and m4.
 in $AMUSE_HOME/prerequisites/lib/python2.7/site-packages
 
 ``
-cycler-0.10.0.dist-info       cython.py                    h5py                        mpi4py                        nose                        pyparsing.py   roman.pyc
-cycler.py                     cython.pyc                   h5py-2.3.1-py2.7.egg-info   mpi4py-1.3.1-py2.7.egg-info   nose-1.0.0-py2.7.egg-info   pyparsing.pyc  six-1.10.0.dist-info
-cycler.pyc                    dateutil                     matplotlib                  netCDF4                       numpy                       pyximport      six.py
-Cython                        docutils                     matplotlib-2.0.0.egg-info   netCDF4-1.2.4-py2.7.egg-info  numpy-1.8.0-py2.7.egg-info  README         six.pyc
-Cython-0.23.4-py2.7.egg-info  docutils-0.7-py2.7.egg-info  matplotlib-2.0.0-nspkg.pth  netcdftime                    pyparsing-2.1.10.dist-info  roman.py
+cycler-0.10.0.dist-info       cython.pyc                    h5py                        mpi4py-1.3.1-py2.7.egg-info   numpy                       README
+cycler.py                     dateutil                      h5py-2.3.1-py2.7.egg-info   netCDF4                       numpy-1.8.0-py2.7.egg-info  roman.py
+cycler.pyc                    docutils                      matplotlib                  netCDF4-1.2.4-py2.7.egg-info  pyparsing-2.1.10.dist-info  roman.pyc
+Cython                        docutils-0.7-py2.7.egg-info   matplotlib-2.0.0.egg-info   netcdftime                    pyparsing.py                six-1.10.0.dist-info
+Cython-0.23.4-py2.7.egg-info  functools32                   matplotlib-2.0.0-nspkg.pth  nose                          pyparsing.pyc               six.py
+cython.py                     functools32-3.2.3_2.egg-info  mpi4py                      nose-1.0.0-py2.7.egg-info     pyximport                   six.pyc
 ``
 
-for sure matplotlib, six, pyparsing, dateutil
+for sure the Python modules matplotlib, six, pyparsing, dateutil and functools32.
 
 
