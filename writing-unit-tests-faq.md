@@ -1,7 +1,8 @@
-"""
-Q: Can a unit test have multiple assertions, or should it always have only one?
 
-A: It is a matter of taste, but it is certainly possible to do multiple assertions. However, make sure that:
+### Q: Can a unit test have multiple assertions, or should it always have only one?
+
+### It is a matter of taste, but it is certainly possible to do multiple assertions. 
+However, make sure that:
 
 A) the user is clearly informed when a test fails (and assume there will be other developers than you).
 
