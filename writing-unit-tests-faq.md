@@ -16,4 +16,3 @@ def pr_unittest(test_name, test_outcome_bool):
 Another advantage of having a custom print function is that you can change the verbosity (level of output) in your tests simply by changing the behavior of that one function.
 
 For example, you could have it only print if test_outcome_bool is False, hence not crowding the screen with test results that were correct.
-"""
