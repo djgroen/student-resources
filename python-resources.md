@@ -32,4 +32,9 @@ http://inventwithpython.com/blog/2012/04/06/stop-using-print-for-debugging-a-5-m
 Piles of examples how to plot data using Matplotlib/pyplot (note the two rely on the same underlying library):
 http://matplotlib.org/examples/
 
+The Python Text Book gives a systematic overview of the language
+http://python-textbok.readthedocs.io/
+e.g., on how to use classes:
+http://python-textbok.readthedocs.io/en/1.0/Classes.html
+
 We also have a few Python examples in the python-examples subdirectory of this repository.
