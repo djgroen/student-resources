@@ -12,6 +12,9 @@ http://interactivepython.org/courselib/static/thinkcspy/index.html
 Introductory material to SciPy:
 http://www.scipy-lectures.org/
 
+Quick online testing of Python.
+http://repl.it
+
 *Starting Jupyter notebook on the student machine:*
 You start the server in one terminal by typing "jupyter notebook".
 Then in a second terminal logged in on the same student machine, you type "firefox"
