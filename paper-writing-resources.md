@@ -14,3 +14,8 @@ And if you have time:
 ## Specific advice for LaTeX users
 
 UK LaTeX FAQ, which is likely to contain answers to most of your questions: http://www.tex.ac.uk/index.html
+
+## Advice on figures and graph-making
+
+* nice basic viz advice: https://eagereyes.org/ 
+* examples of common chart mistaken: http://junkcharts.typepad.com/ 
