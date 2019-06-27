@@ -40,4 +40,7 @@ http://python-textbok.readthedocs.io/
 e.g., on how to use classes:
 http://python-textbok.readthedocs.io/en/1.0/Classes.html
 
+Python anti-patterns site, to help you get rid of bad practices
+https://docs.quantifiedcode.com/python-anti-patterns/index.html
+
 We also have a few Python examples in the python-examples subdirectory of this repository.
