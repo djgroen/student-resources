@@ -7,8 +7,15 @@
 
 Educational resources for students
 ===========================================================
-This repository has been created in support of students and colleagues of Derek Groen (http://people.brunel.ac.uk/~csstddg).
+This page is to support students and colleagues of Derek Groen (http://people.brunel.ac.uk/~csstddg) with reference material. It will contain selected material from http://www.github.com/djgroen/student-resources. 
 
+Tutorials
+---------------
+.. toctree::
+   :caption: Locally hosted tutorials
+   :maxdepth: 2
+
+   python-abm
 
 
 Key FabSim3 reference documents
@@ -32,16 +39,6 @@ Here's a list of particularly useful reference documents for FabSim3.
 * How to create your own plugin: https://github.com/djgroen/FabSim3/blob/master/doc/CreatePlugins.md
 * How to write automation scripts: https://github.com/djgroen/FabSim3/blob/master/doc/CreateAutomationScripts.md
 * How to use FabSim with QCG middleware: https://github.com/djgroen/FabSim3/blob/master/doc/FabSim%2BQCG.md
-
-
-Other tutorials
----------------
-.. toctree::
-   :caption: Locally hosted tutorials
-   :maxdepth: 2
-
-   python-abm
-   
 
 
 Indices and tables
