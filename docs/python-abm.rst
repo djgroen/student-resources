@@ -89,13 +89,13 @@ this, we created a simple weighted choice algorithm:
 ```
   def selectRoute(self):        
     total_score = 0.0
-    for i in xrange(0,len(self.location.links)):
+    for i in range(0,len(self.location.links)):
       total_score += 40000.0 / (10.0 + self.location.links[i].distance)
 
     selected_value = random.random() * total_score
 
     checked_score = 0.0
-    for i in xrange(0,len(self.location.links)):
+    for i in range(0,len(self.location.links)):
       checked_score += 40000.0 / (10.0 + self.location.links[i].distance)
       if selected_value < checked_score:
         return i
@@ -271,7 +271,7 @@ Next, we need a function that adds locations to the Ecosystem:
     """
     endpoint1_index = 0
     endpoint2_index = 0
-    for i in xrange(0, len(self.locationNames)):
+    for i in range(0, len(self.locationNames)):
       if(self.locationNames[i] == endpoint1):
         endpoint1_index = i
       if(self.locationNames[i] == endpoint2):
@@ -306,9 +306,9 @@ Lastly, we add two functions to aid us in writing out some results.
 
   def printInfo(self):
 
-    print "Time: ", self.time, ", # of agents: ", len(self.agents)
+    print("Time: ", self.time, ", # of agents: ", len(self.agents))
     for l in self.locations:
-      print l.name, l.numAgents
+      print(l.name, l.numAgents)
 ```
 
 =============================================
@@ -322,7 +322,7 @@ sink locations to it:
 
 ```
 if __name__ == "__main__":
-  print "A first ABM implementation"
+  print("A first ABM implementation")
 
   e = Ecosystem()
 
@@ -344,7 +344,7 @@ With the location and links in place, we can now insert a hundred agents in the
 source location l1. To do that, we use the addAgent() function a hundred times.
 
 ```
-  for i in xrange(0,100):
+  for i in range(0,100):
     e.addAgent(location=l1)
 ```
 
@@ -354,7 +354,7 @@ information after each time step:
 
 ```
   duration=10
-  for t in xrange(0,duration):
+  for t in range(0,duration):
     e.doTimeStep()
     e.printInfo()
 ```
