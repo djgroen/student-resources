@@ -5,7 +5,7 @@ Designing and prototyping your own simulation using Python 3.
 
 Written by Derek Groen (Derek.Groen@brunel.ac.uk)
 
-In this tutorial, you will learn how to write a very basic agent-based simulation application. The example we use is a very simplistic simulation that attempts to predict the movement of refugees during the Northern Mali Conflict in 2012.
+In this tutorial, you will learn how to write a very basic agent-based simulation application. The example we use is a very simplistic simulation that attempts to predict the movement of persons during the Northern Mali Conflict in 2012.
 
 The underlying technique we introduce here is more widely known as *agent-based modelling*, or ABM.
 
@@ -15,13 +15,13 @@ What is agent-based modelling?
 
 Types of agents
 
-When thinking about refugee movements, there are a few basic elements:
+When thinking about forced migration movements, there are a few basic elements:
 
-    The refugees themselves.
-    The locations where the refugees reside
+    The displaced persons themselves.
+    The locations where the persons reside
     And possibly the paths (or routes) that interconnect the locations
 
-In its simplest form, this agent-based model features refugees that reside at a
+In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
 simulation progresses.  Network-based versus geographically pixelated
 
@@ -47,7 +47,7 @@ essential one, as agent-based simulations strongly rely on randomizers.
 Defining a single person
 ------------------------
 
-We first start by defining a simple class which describes a refugee. Let's name
+We first start by defining a simple class which describes a person. Let's name
 this class "Person", so that we could choose to reuse the class for other
 simulation purposes.
 ::
@@ -170,9 +170,9 @@ The Location class, too, has a number of simple parameters. These represent esse
 * name: the name of the Location.
 * x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.
 * y: GPS y-coordinate.
-* movechance: An indicator denoting the safety level of this location. Are refugees certain to stay put (0), certain to move out immediately (1) or will there be a mixture (0<movechance<1).
+* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0), certain to move out immediately (1) or will there be a mixture (0<movechance<1).
 * links: An array containing routes/links/paths to other Locations.
-* numAgents: A tracking variable that keeps count as to how many refugees are present at this Location.
+* numAgents: A tracking variable that keeps count as to how many people are present at this Location.
 
 ==================
 Defining the Links
@@ -201,7 +201,7 @@ The Links class is accompanied with the following attributes:
 
 * distance: The length of the link in kilometers.
 * endpoint: A reference to the Location to which this Link will lead.
-* numAgents: Our all-familiar tracking variable that keeps count as to how many refugees are in transit on this link.
+* numAgents: Our all-familiar tracking variable that keeps count as to how many people are in transit on this link.
 
 Note: As Links are stored in arrays as part of each (starting) Location, we do not need to define the starting Location as a parameter of this class.
 
