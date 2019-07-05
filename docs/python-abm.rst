@@ -37,7 +37,7 @@ as is, but as part of this tutorial you're being asked to change some of its
 features from simplistic to something a bit more fancy.  
 
 Imports
-.. codeblock:: python
+::
   import random
 
 In this tutorial we use very few dependencies, but the random library is an
@@ -51,7 +51,7 @@ We first start by defining a simple class which describes a refugee. Let's name
 this class "Person", so that we could choose to reuse the class for other
 simulation purposes.
 
-.. codeblock:: python
+::
   class Person:
     def __init__(self, location):
       self.ill = False
@@ -85,7 +85,7 @@ We will start with decision 2, which is at the lowest level, and create a
 simple function that picks a favourite route amongst a list of routes. To do
 this, we created a simple weighted choice algorithm:
 
-.. codeblock:: python
+::
   def selectRoute(self):        
     total_score = 0.0
     for i in range(0,len(self.location.links)):
@@ -115,7 +115,7 @@ function essentially captures the mechanics in making decision 1, and relies on
 the aforementioned selectRoute() to resolve decision 2 when necessary:
 
 
-.. codeblock:: python
+::
   def evolve(self):
     movechance = self.location.movechance
     outcome = random.random()
@@ -140,7 +140,7 @@ evolve() places Persons on the Links. To ensure that these Persons reach there
 destination we create one more function, namely finish_travel()
 
 
-.. codeblock:: python
+::
   def finish_travel(self):
     if self.travelling:
       # update location (which is on a link) to link endpoint
@@ -161,7 +161,7 @@ Defining the Locations
 Now Persons will reside at a given place, or Location. To define these places
 in a networked model, we create a Location object for each place:
 
-.. codeblock:: python
+::
   class Location:
     def __init__(self, name, x=0.0, y=0.0, movechance=0.001):
       self.name = name
@@ -191,7 +191,7 @@ network-based model it is not immediately clear that give Locations are
 adjacent. To define adjacencies, we therefore create Link objects which
 interconnect a set of two locations:
 
-.. codeblock:: python
+::
   class Link:
     def __init__(self, endpoint, distance):
 
@@ -229,7 +229,7 @@ To accomplish this, we create an Ecosystem class, which stores the full state
 (Locations, Links and Persons), and which is able to evolve them in time. We
 define the class as follows:
 
-.. codeblock:: python
+::
   class Ecosystem:
     def __init__(self):
       self.locations = []
@@ -247,7 +247,7 @@ The Ecosystem class has the following attributes:
 
 Next, we need a function that adds locations to the Ecosystem:
 
-.. codeblock:: python
+::
   def addLocation(self, name, x="0.0", y="0.0", movechance=0.1):
     l = Location(name, x, y, movechance)
     self.locations.append(l)
@@ -257,14 +257,14 @@ Next, we need a function that adds locations to the Ecosystem:
 
 ...a function that adds Agents to the Ecosystem:
 
-.. codeblock:: python
+::
   def addAgent(self, location):
     self.agents.append(Person(location))
 
 
 ...and a function that adds Links to the Ecosystem:
 
-.. codeblock:: python
+::
   def linkUp(self, endpoint1, endpoint2, distance="1.0"):
     """ Creates a link between two endpoint locations
     """
@@ -283,7 +283,7 @@ Next, we need a function that adds locations to the Ecosystem:
 
 Crucially, we want to evolve the system in time. This is actually done using the following function:
 
-.. codeblock:: python
+::
   def doTimeStep(self):
     #update agent locations
     for a in self.agents:
@@ -299,7 +299,7 @@ Crucially, we want to evolve the system in time. This is actually done using the
 
 Lastly, we add two functions to aid us in writing out some results.
 
-.. codeblock:: python
+::
   def numAgents(self):
     return len(self.agents)
 
@@ -319,7 +319,7 @@ simulation. Here we describe how you can construct and run a simple ABM
 simulation. We start off by creating an Ecosystem, and adding a source, and two
 sink locations to it:
 
-.. codeblock:: python
+::
   if __name__ == "__main__":
     print("A first ABM implementation")
 
@@ -333,7 +333,7 @@ Next, we establish two paths, each of which connects the source location to one
 of the two sink locations. As a test, we specify one of the paths to have a
 length of 10 kilometers, and one to have a length of 5 kilometers:
 
-.. codeblock:: python
+::
     e.linkUp("Source","Sink1","10.0")
     e.linkUp("Source","Sink2","5.0")
 
@@ -341,7 +341,7 @@ length of 10 kilometers, and one to have a length of 5 kilometers:
 With the location and links in place, we can now insert a hundred agents in the
 source location l1. To do that, we use the addAgent() function a hundred times.
 
-.. codeblock:: python
+::
     for i in range(0,100):
       e.addAgent(location=l1)
 
@@ -350,7 +350,7 @@ With all the agents in place, we can now proceed to run the simulation. We run
 the simulation for a duration of 10 time steps, and we print basic diagnostic
 information after each time step:
 
-.. codeblock:: python
+::
     duration=10
     for t in range(0,duration):
       e.doTimeStep()
