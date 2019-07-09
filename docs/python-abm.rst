@@ -9,6 +9,12 @@ In this tutorial, you will learn how to write a very basic agent-based simulatio
 
 The underlying technique we introduce here is more widely known as *agent-based modelling*, or ABM.
 
+------------
+Requirements
+------------
+
+To do this tutorial, you need a working Python3 installation. Numpy and pyplot are useful, but optional.
+
 ==============================
 What is agent-based modelling?
 ==============================
@@ -17,9 +23,9 @@ Types of agents
 
 When thinking about forced migration movements, there are a few basic elements:
 
-    The displaced persons themselves.
-    The locations where the persons reside
-    And possibly the paths (or routes) that interconnect the locations
+* The displaced persons themselves.
+* The locations where the persons reside
+* And possibly the paths (or routes) that interconnect the locations
 
 In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
@@ -74,11 +80,15 @@ you like, but I opted for the following (semi-arbitrary) set:
 * location: a reference to the location where the Person currently resides.
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
 
+------------------------------------
+Rules for movement and state changes
+------------------------------------
+
 Now each Person will have to make decisions at different moment. In this code,
 we model two types of decisions:
 
-* Whether the Person wishes to move from its current location to another one.
-* If 1 is the case: which route the Person will choose from a set of routes.
+1. Whether the Person wishes to move from its current location to another one.
+2. If 1 is the case: which route the Person will choose from a set of routes.
 
 We will start with decision 2, which is at the lowest level, and create a
 simple function that picks a favourite route amongst a list of routes. To do
@@ -105,12 +115,12 @@ km]).
 
 Because the function is rather simple, I included a full implementation.
 However, the exact same functionality can also be accomplished using
-numpy.random.choice().
+`numpy.random.choice()`.
 
-selectRoute() is embedded in a more general function (evolve()), which evolves
+`selectRoute()` is embedded in a more general function (`evolve()`), which evolves
 the position of a Person over a single timestep in the simulation. This
 function essentially captures the mechanics in making decision 1, and relies on
-the aforementioned selectRoute() to resolve decision 2 when necessary:
+the aforementioned `selectRoute()` to resolve decision 2 when necessary:
 ::
   def evolve(self):
     movechance = self.location.movechance
@@ -132,8 +142,8 @@ movechance. This movechance is a static number for each Location, allowing us
 to set a high movechance for unsafe locations, and a lower movechance for safer
 locations.
 
-evolve() places Persons on the Links. To ensure that these Persons reach there
-destination we create one more function, namely finish_travel()
+`evolve()` places Persons on the Links. To ensure that these Persons reach there
+destination we create one more function, namely `finish_travel()`
 ::
   def finish_travel(self):
     if self.travelling:
@@ -142,10 +152,8 @@ destination we create one more function, namely finish_travel()
       self.location = self.location.endpoint
       self.location.numAgents += 1 
 
-
-
 This function is a little redundant right now (it could be part of evolve()),
-but it allows you to later modify the code, to accomodate Persons to spend more
+but it allows you to later modify the code, to accommodate Persons to spend more
 than one time step in transit.
 
 ======================
@@ -170,7 +178,7 @@ The Location class, too, has a number of simple parameters. These represent esse
 * name: the name of the Location.
 * x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.
 * y: GPS y-coordinate.
-* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0), certain to move out immediately (1) or will there be a mixture (0<movechance<1).
+* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0), certain to move out immediately (1) or will there be a mixture (0<`movechance`<1).
 * links: An array containing routes/links/paths to other Locations.
 * numAgents: A tracking variable that keeps count as to how many people are present at this Location.
 
