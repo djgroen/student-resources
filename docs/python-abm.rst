@@ -5,9 +5,16 @@ Designing and prototyping your own simulation using Python 3.
 
 Written by Derek Groen (Derek.Groen@brunel.ac.uk)
 
-In this tutorial, you will learn how to write a very basic agent-based simulation application. The example we use is a very simplistic simulation that attempts to predict the movement of persons during the Northern Mali Conflict in 2012.
+In this tutorial, you will learn how to write a basic agent-based simulation application. The example we use is a simulation that attempts to predict the movement of persons escaping dangerous areas and seeking safety. The principles we cover in this tutorial have been used for a wide range of simulations, for instance to model the escape of people from armed conflicts (https://www.nature.com/articles/s41598-017-13828-9).
 
 The underlying technique we introduce here is more widely known as *agent-based modelling*, or ABM.
+
+In this tutorial we will cover the following aspects:
+* What is agent-based modelling in general.
+* Creating a simple agent-based model with Python3 and using several of the key concepts that we used in the Flee agent-based modelling code.
+* Observing uncertainty in your simulation results.
+* Basic steps towards designing and prototyping your own model.
+
 
 ------------
 Requirements
@@ -16,7 +23,7 @@ Requirements
 To do this tutorial, you need a working Python3 installation. Numpy and pyplot are useful, but optional.
 
 ==============================
-What is agent-based modelling?
+Introduction: What is agent-based modelling?
 ==============================
 
 An agent-based model (ABM) is a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
@@ -36,18 +43,17 @@ simulation progresses.
 
 In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas.  
 
-*The code*
+-------------------
+The simulation code
+-------------------
 
-What follows is a detailed investigation of the simulation code. The code works
-as is, but as part of this tutorial you're being asked to change some of its
-features from simplistic to something a bit more fancy.  
+What follows is a step-by-step explanation how you can use Python3 to build such a simulation code. The code works as is, but as part of this tutorial you're being asked to change some of its features from simplistic to something a bit more fancy.  
 
 Imports
 ::
   import random
 
-In this tutorial we use very few dependencies, but the random library is an
-essential one, as agent-based simulations strongly rely on randomizers.
+In this tutorial we use very few dependencies, but the random library is an essential one, as agent-based simulations strongly rely on randomizers.
 
 ------------------------
 Defining a single person
