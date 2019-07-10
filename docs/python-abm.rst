@@ -310,31 +310,35 @@ Creating and running a Agent-based Simulation
 
 We have now created all the essential classes to perform an agent-based
 simulation. Here we describe how you can construct and run a simple ABM
-simulation. We start off by creating an Ecosystem, and adding a source, and two
-sink locations to it:
+simulation. We start off by creating an Ecosystem, and creating a location graph with six locations in it.
+The location graph will roughly look like this:
+
+.. image:: figures/locations.png
+
+And the source code required to add the locations for this involves:
 ::
   if __name__ == "__main__":
     print("A first ABM implementation")
 
     e = Ecosystem()
 
-    l1 = e.addLocation("Source")
-    l2 = e.addLocation("Source2")
-    l3 = e.addLocation("Transit1")
-    l4 = e.addLocation("Transit2")
-    l5 = e.addLocation("Sink1")
-    l6 = e.addLocation("Sink2")
+    l1 = e.addLocation("Source1",x=20,y=0)
+    l2 = e.addLocation("Source2",x=10,y=10)
+    l3 = e.addLocation("Transit1",x=10,y=0)
+    l4 = e.addLocation("Transit2",x=20,y=10)
+    l5 = e.addLocation("Sink1",x=30,y=0)
+    l6 = e.addLocation("Sink2",x=0,y=10)
 
 Next, we establish two paths, each of which connects the source location to one
 of the two sink locations. As a test, we specify one of the paths to have a
 length of 10 kilometers, and one to have a length of 5 kilometers:
 ::
-    e.linkUp("Source","Sink1","10.0")
-    e.linkUp("Source","Sink2","5.0")
-    e.linkUp("Source","Sink1","10.0")
-    e.linkUp("Source","Sink2","5.0")
-    e.linkUp("Source","Sink1","10.0")
-    e.linkUp("Source","Sink2","5.0")
+    e.linkUp("Source1","Transit1","10.0")
+    e.linkUp("Source1","Transit2","5.0")
+    e.linkUp("Source2","Transit1","10.0")
+    e.linkUp("Source2","Transit2","5.0")
+    e.linkUp("Transit1","Sink1","20.0")
+    e.linkUp("Transit2","Sink2","20.0")
 
 
 With the location and links in place, we can now insert a hundred agents in the
