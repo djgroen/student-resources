@@ -19,24 +19,24 @@ To do this tutorial, you need a working Python3 installation. Numpy and pyplot a
 What is agent-based modelling?
 ==============================
 
-Types of agents
+An agent-based model (ABM) is a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
 
-When thinking about forced migration movements, there are a few basic elements:
+In this tutorial we assume that we are modelling of people moving from one place to another. However, ABM can also be used to model other movements, e.g. of objects such as cars, of animals, of cells, or even transactions or e-mails. The elements may differ on the type of model you wish to create.
 
-* The displaced persons themselves.
+In the case of our people movement simulations, we work with three basic elements:
+* The persons themselves.
 * The locations where the persons reside
 * And possibly the paths (or routes) that interconnect the locations
 
 In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
-simulation progresses.  Network-based versus geographically pixelated
+simulation progresses.  
 
-In general there are two widespread basic approaches to ABM. One is
-network-based, where each location is an agent, and the location agents are
-interlinked using path agents. A second approach is geographically pixelated,
-where a region is subdivided into square areas, and the location of agents is
-indicated by the respective coordinates of the corresponding square areas.  The
-code
+*Network-based versus geographically pixelated*
+
+In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas.  
+
+*The code*
 
 What follows is a detailed investigation of the simulation code. The code works
 as is, but as part of this tutorial you're being asked to change some of its
@@ -319,13 +319,20 @@ sink locations to it:
     e = Ecosystem()
 
     l1 = e.addLocation("Source")
-    l2 = e.addLocation("Sink1")
-    l3 = e.addLocation("Sink2")
+    l2 = e.addLocation("Source2")
+    l3 = e.addLocation("Transit1")
+    l4 = e.addLocation("Transit2")
+    l5 = e.addLocation("Sink1")
+    l6 = e.addLocation("Sink2")
 
 Next, we establish two paths, each of which connects the source location to one
 of the two sink locations. As a test, we specify one of the paths to have a
 length of 10 kilometers, and one to have a length of 5 kilometers:
 ::
+    e.linkUp("Source","Sink1","10.0")
+    e.linkUp("Source","Sink2","5.0")
+    e.linkUp("Source","Sink1","10.0")
+    e.linkUp("Source","Sink2","5.0")
     e.linkUp("Source","Sink1","10.0")
     e.linkUp("Source","Sink2","5.0")
 
