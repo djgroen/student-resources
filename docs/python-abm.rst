@@ -10,10 +10,10 @@ In this tutorial, you will learn how to write a basic agent-based simulation app
 The underlying technique we introduce here is more widely known as *agent-based modelling*, or ABM.
 
 In this tutorial we will cover the following aspects:
-* What is agent-based modelling in general.
-* Creating a simple agent-based model with Python3 and using several of the key concepts that we used in the Flee agent-based modelling code.
-* Observing uncertainty in your simulation results.
-* Basic steps towards designing and prototyping your own model.
+- What is agent-based modelling in general.
+- Creating a simple agent-based model with Python3 and using several of the key concepts that we used in the Flee agent-based modelling code.
+- Observing uncertainty in your simulation results.
+- Basic steps towards designing and prototyping your own model.
 
 
 ------------
@@ -31,9 +31,9 @@ An agent-based model (ABM) is a computational technique to model the actions and
 In this tutorial we assume that we are modelling of people moving from one place to another. However, ABM can also be used to model other movements, e.g. of objects such as cars, of animals, of cells, or even transactions or e-mails. The elements may differ on the type of model you wish to create.
 
 In the case of our people movement simulations, we work with three basic elements:
-* The persons themselves.
-* The locations where the persons reside
-* And possibly the paths (or routes) that interconnect the locations
+- The persons themselves.
+- The locations where the persons reside
+- And possibly the paths (or routes) that interconnect the locations
 
 In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
