@@ -77,6 +77,7 @@ simulation purposes.
 
       # Set to true when an agent resides on a link.
       self.travelling = False
+      self.distance_travelled_on_link = 0
 
 
 I gave the Person class a simple constructor (see the _init_() function), which
@@ -132,18 +133,20 @@ function essentially captures the mechanics in making decision 1, and relies on
 the aforementioned `selectRoute()` to resolve decision 2 when necessary:
 ::
   def evolve(self):
-    movechance = self.location.movechance
-    outcome = random.random()
-    self.travelling = False
-    if outcome < movechance:
-      # determine here which route to take?
-      chosenRoute = self.selectRoute()
+  
+    if not self.travelling:
+      movechance = self.location.movechance
+      outcome = random.random()
+    
+      if outcome < movechance:
+        # determine here which route to take?
+        chosenRoute = self.selectRoute()
 
-      # update location to link endpoint
-      self.location.numAgents -= 1
-      self.location = self.location.links[chosenRoute]
-      self.location.numAgents += 1
-      self.travelling = True
+        # update location to link endpoint
+        self.location.numAgents -= 1
+        self.location = self.location.links[chosenRoute]
+        self.location.numAgents += 1
+        self.travelling = True
 
 
 Here the chance of a Person moving at all at a given time step is given by the
@@ -155,15 +158,23 @@ locations.
 destination we create one more function, namely `finish_travel()`
 ::
   def finish_travel(self):
+    # if the person resides on a link between locations, it is "travelling"
     if self.travelling:
-      # update location (which is on a link) to link endpoint
-      self.location.numAgents -= 1
-      self.location = self.location.endpoint
-      self.location.numAgents += 1 
+    
+      # increment the distance covered by 10 kilometers.
+      self.distance_travelled_on_link += 10 
+      
+      # get the length of the current route (link).
+      link_length = self.location.distance
+      
+      # If the distance travelled is longer than the length of the link, we arrive at our destination.      
+      if self.distance_travelled_on_link > link_length:
+        self.location.numAgents -= 1
+        self.location = self.location.endpoint
+        self.location.numAgents += 1
+        self.travelling = False
 
-This function is a little redundant right now (it could be part of evolve()),
-but it allows you to later modify the code, to accommodate Persons to spend more
-than one time step in transit.
+This function allows us to track agents who are on links, and have them progress gradually.
 
 ======================
 Defining the Locations
@@ -311,6 +322,12 @@ Lastly, we add two functions to aid us in writing out some results.
     print("Time: ", self.time, ", # of agents: ", len(self.agents))
     for l in self.locations:
       print(l.name, l.numAgents)
+    
+    my_file = open("agents.%.csv" % (self.time), "w")
+    
+    my_file.write("#id,x,y\n")
+    of id,a in enumerate(self.agents):
+      my_file.write("%s,%s,%s\n" % (id, a.x, a.y))
 
 
 =============================================
@@ -331,23 +348,23 @@ And the source code required to add the locations for this involves:
 
     e = Ecosystem()
 
-    l1 = e.addLocation("Source1",x=20,y=0)
-    l2 = e.addLocation("Source2",x=10,y=10)
-    l3 = e.addLocation("Transit1",x=10,y=0)
-    l4 = e.addLocation("Transit2",x=20,y=10)
-    l5 = e.addLocation("Sink1",x=30,y=0)
-    l6 = e.addLocation("Sink2",x=0,y=10)
+    l1 = e.addLocation("Source1",x=200,y=0)
+    l2 = e.addLocation("Source2",x=100,y=100)
+    l3 = e.addLocation("Transit1",x=100,y=0)
+    l4 = e.addLocation("Transit2",x=200,y=100)
+    l5 = e.addLocation("Sink1",x=300,y=0)
+    l6 = e.addLocation("Sink2",x=0,y=100)
 
 Next, we establish two paths, each of which connects the source location to one
 of the two sink locations. As a test, we specify one of the paths to have a
 length of 10 kilometers, and one to have a length of 5 kilometers:
 ::
-    e.linkUp("Source1","Transit1","10.0")
-    e.linkUp("Source1","Transit2","5.0")
-    e.linkUp("Source2","Transit1","10.0")
-    e.linkUp("Source2","Transit2","5.0")
-    e.linkUp("Transit1","Sink1","20.0")
-    e.linkUp("Transit2","Sink2","20.0")
+    e.linkUp("Source1","Transit1","100.0")
+    e.linkUp("Source1","Transit2","50.0")
+    e.linkUp("Source2","Transit1","100.0")
+    e.linkUp("Source2","Transit2","50.0")
+    e.linkUp("Transit1","Sink1","200.0")
+    e.linkUp("Transit2","Sink2","200.0")
 
 
 With the location and links in place, we can now insert a hundred agents in the
