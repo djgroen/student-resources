@@ -1,6 +1,6 @@
 
 *************************************************************
-Designing and prototyping your own simulation using Python 3.
+Designing and prototyping your own simulation with Python3.
 *************************************************************
 
 Written by Derek Groen (Derek.Groen@brunel.ac.uk)
@@ -27,7 +27,8 @@ To do this tutorial, you need a working Python3 installation. Numpy and pyplot a
 Introduction: What is agent-based modelling?
 ==============================
 
-An agent-based model (ABM) is a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
+agent-based model (ABM) 
+  a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
 
 In this tutorial we assume that we are modelling of people moving from one place to another. However, ABM can also be used to model other movements, e.g. of objects such as cars, of animals, of cells, or even transactions or e-mails. The elements may differ on the type of model you wish to create.
 
