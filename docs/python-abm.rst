@@ -1,13 +1,21 @@
 
 *************************************************************
-Designing and prototyping your own simulation using Python 3.
+Designing and prototyping your own simulation with Python3.
 *************************************************************
 
 Written by Derek Groen (Derek.Groen@brunel.ac.uk)
 
-In this tutorial, you will learn how to write a very basic agent-based simulation application. The example we use is a very simplistic simulation that attempts to predict the movement of persons during the Northern Mali Conflict in 2012.
+In this tutorial, you will learn how to write a basic agent-based simulation application. The example we use is a simulation that attempts to predict the movement of persons escaping dangerous areas and seeking safety. The principles we cover in this tutorial have been used for a wide range of simulations, for instance to model the escape of people from armed conflicts (https://www.nature.com/articles/s41598-017-13828-9).
 
 The underlying technique we introduce here is more widely known as *agent-based modelling*, or ABM.
+
+In this tutorial we will cover the following aspects:
+
+- What is agent-based modelling in general.
+- Creating a simple agent-based model with Python3 and using several of the key concepts that we used in the Flee agent-based modelling code.
+- Observing uncertainty in your simulation results.
+- Basic steps towards designing and prototyping your own model.
+
 
 ------------
 Requirements
@@ -16,17 +24,19 @@ Requirements
 To do this tutorial, you need a working Python3 installation. Numpy and pyplot are useful, but optional.
 
 ==============================
-What is agent-based modelling?
+Introduction: What is agent-based modelling?
 ==============================
 
-An agent-based model (ABM) is a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
+agent-based model (ABM) 
+  a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
 
 In this tutorial we assume that we are modelling of people moving from one place to another. However, ABM can also be used to model other movements, e.g. of objects such as cars, of animals, of cells, or even transactions or e-mails. The elements may differ on the type of model you wish to create.
 
 In the case of our people movement simulations, we work with three basic elements:
-* The persons themselves.
-* The locations where the persons reside
-* And possibly the paths (or routes) that interconnect the locations
+
+- The persons themselves.
+- The locations where the persons reside
+- And possibly the paths (or routes) that interconnect the locations
 
 In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
@@ -36,18 +46,17 @@ simulation progresses.
 
 In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas.  
 
-*The code*
+-------------------
+The simulation code
+-------------------
 
-What follows is a detailed investigation of the simulation code. The code works
-as is, but as part of this tutorial you're being asked to change some of its
-features from simplistic to something a bit more fancy.  
+What follows is a step-by-step explanation how you can use Python3 to build such a simulation code. The code works as is, but as part of this tutorial you're being asked to change some of its features from simplistic to something a bit more fancy.  
 
 Imports
 ::
   import random
 
-In this tutorial we use very few dependencies, but the random library is an
-essential one, as agent-based simulations strongly rely on randomizers.
+In this tutorial we use very few dependencies, but the random library is an essential one, as agent-based simulations strongly rely on randomizers.
 
 ------------------------
 Defining a single person
@@ -68,6 +77,7 @@ simulation purposes.
 
       # Set to true when an agent resides on a link.
       self.travelling = False
+      self.distance_travelled_on_link = 0
 
 
 I gave the Person class a simple constructor (see the _init_() function), which
@@ -123,18 +133,20 @@ function essentially captures the mechanics in making decision 1, and relies on
 the aforementioned `selectRoute()` to resolve decision 2 when necessary:
 ::
   def evolve(self):
-    movechance = self.location.movechance
-    outcome = random.random()
-    self.travelling = False
-    if outcome < movechance:
-      # determine here which route to take?
-      chosenRoute = self.selectRoute()
+  
+    if not self.travelling:
+      movechance = self.location.movechance
+      outcome = random.random()
+    
+      if outcome < movechance:
+        # determine here which route to take?
+        chosenRoute = self.selectRoute()
 
-      # update location to link endpoint
-      self.location.numAgents -= 1
-      self.location = self.location.links[chosenRoute]
-      self.location.numAgents += 1
-      self.travelling = True
+        # update location to link endpoint
+        self.location.numAgents -= 1
+        self.location = self.location.links[chosenRoute]
+        self.location.numAgents += 1
+        self.travelling = True
 
 
 Here the chance of a Person moving at all at a given time step is given by the
@@ -146,15 +158,23 @@ locations.
 destination we create one more function, namely `finish_travel()`
 ::
   def finish_travel(self):
+    # if the person resides on a link between locations, it is "travelling"
     if self.travelling:
-      # update location (which is on a link) to link endpoint
-      self.location.numAgents -= 1
-      self.location = self.location.endpoint
-      self.location.numAgents += 1 
+    
+      # increment the distance covered by 10 kilometers.
+      self.distance_travelled_on_link += 10 
+      
+      # get the length of the current route (link).
+      link_length = self.location.distance
+      
+      # If the distance travelled is longer than the length of the link, we arrive at our destination.      
+      if self.distance_travelled_on_link > link_length:
+        self.location.numAgents -= 1
+        self.location = self.location.endpoint
+        self.location.numAgents += 1
+        self.travelling = False
 
-This function is a little redundant right now (it could be part of evolve()),
-but it allows you to later modify the code, to accommodate Persons to spend more
-than one time step in transit.
+This function allows us to track agents who are on links, and have them progress gradually.
 
 ======================
 Defining the Locations
@@ -302,6 +322,12 @@ Lastly, we add two functions to aid us in writing out some results.
     print("Time: ", self.time, ", # of agents: ", len(self.agents))
     for l in self.locations:
       print(l.name, l.numAgents)
+    
+    my_file = open("agents.%.csv" % (self.time), "w")
+    
+    my_file.write("#id,x,y\n")
+    of id,a in enumerate(self.agents):
+      my_file.write("%s,%s,%s\n" % (id, a.x, a.y))
 
 
 =============================================
@@ -322,23 +348,23 @@ And the source code required to add the locations for this involves:
 
     e = Ecosystem()
 
-    l1 = e.addLocation("Source1",x=20,y=0)
-    l2 = e.addLocation("Source2",x=10,y=10)
-    l3 = e.addLocation("Transit1",x=10,y=0)
-    l4 = e.addLocation("Transit2",x=20,y=10)
-    l5 = e.addLocation("Sink1",x=30,y=0)
-    l6 = e.addLocation("Sink2",x=0,y=10)
+    l1 = e.addLocation("Source1",x=200,y=0)
+    l2 = e.addLocation("Source2",x=100,y=100)
+    l3 = e.addLocation("Transit1",x=100,y=0)
+    l4 = e.addLocation("Transit2",x=200,y=100)
+    l5 = e.addLocation("Sink1",x=300,y=0)
+    l6 = e.addLocation("Sink2",x=0,y=100)
 
 Next, we establish two paths, each of which connects the source location to one
 of the two sink locations. As a test, we specify one of the paths to have a
 length of 10 kilometers, and one to have a length of 5 kilometers:
 ::
-    e.linkUp("Source1","Transit1","10.0")
-    e.linkUp("Source1","Transit2","5.0")
-    e.linkUp("Source2","Transit1","10.0")
-    e.linkUp("Source2","Transit2","5.0")
-    e.linkUp("Transit1","Sink1","20.0")
-    e.linkUp("Transit2","Sink2","20.0")
+    e.linkUp("Source1","Transit1","100.0")
+    e.linkUp("Source1","Transit2","50.0")
+    e.linkUp("Source2","Transit1","100.0")
+    e.linkUp("Source2","Transit2","50.0")
+    e.linkUp("Transit1","Sink1","200.0")
+    e.linkUp("Transit2","Sink2","200.0")
 
 
 With the location and links in place, we can now insert a hundred agents in the
