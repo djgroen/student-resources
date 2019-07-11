@@ -3,7 +3,7 @@
 Designing and prototyping your own simulation with Python3.
 *************************************************************
 
-Written by Derek Groen (Derek.Groen@brunel.ac.uk)
+Written by Derek Groen (Derek.Groen@brunel.ac.uk), with help from Subam Bista, Diana Suleimenova and Gebremariam Assres.
 
 In this tutorial, you will learn how to write a basic agent-based simulation application. The example we use is a simulation that attempts to predict the movement of persons escaping dangerous areas and seeking safety. The principles we cover in this tutorial have been used for a wide range of simulations, for instance to model the escape of people from armed conflicts (https://www.nature.com/articles/s41598-017-13828-9).
 
@@ -34,9 +34,9 @@ In this tutorial we assume that we are modelling of people moving from one place
 
 In the case of our people movement simulations, we work with three basic elements:
 
-- The persons themselves.
-- The locations where the persons reside
-- And possibly the paths (or routes) that interconnect the locations
+- The persons themselves (`Person` class).
+- The locations where the persons reside (`Location` class).
+- And possibly the paths (or routes) that interconnect the locations (`Link` class).
 
 In its simplest form, this agent-based model features people that reside at a
 given location, and that move from one location to another as the time in the
@@ -44,19 +44,19 @@ simulation progresses.
 
 *Network-based versus geographically pixelated*
 
-In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas.  
+In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas. It is possible to use a network-based model to approximate a geographically pixelated model, by placing all locations on Carthesian coordinates. 
 
 -------------------
 The simulation code
 -------------------
 
-What follows is a step-by-step explanation how you can use Python3 to build such a simulation code. The code works as is, but as part of this tutorial you're being asked to change some of its features from simplistic to something a bit more fancy.  
+What follows is a step-by-step explanation how you can use Python3 to build an agent-based simulation code. The code works as is, but as part of this tutorial you will be given the opportunity to change some of its features, so that you can make it suit your personal needs.
 
 Imports
 ::
   import random
 
-In this tutorial we use very few dependencies, but the random library is an essential one, as agent-based simulations strongly rely on randomizers.
+In this tutorial we use very few dependencies for the main simulation code, but the random library is an essential one, as agent-based simulations strongly rely on randomizers. We do require a few more dependencies for visualizing results, namely matplotlib, pandas, and ffmpeg for storing animations.
 
 ------------------------
 Defining a single person
@@ -80,15 +80,14 @@ simulation purposes.
       self.distance_travelled_on_link = 0
 
 
-I gave the Person class a simple constructor (see the _init_() function), which
-sets a number of parameters specific to the class. You can define any parameter
-you like, but I opted for the following (semi-arbitrary) set:
+I gave the Person class a simple constructor (see the _init_() function), which sets a number of parameters specific to the class. You can define any parameter you like, but I opted for the following (semi-arbitrary) set:
 
 * healthy: which indicates whether a Person is generally healthy or ill/weakened.
 * injured: which indicates whether a Person is physically injured or not.
 * age: age in years.
 * location: a reference to the location where the Person currently resides.
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
+* distance_travelled_on_link: if currently in transit, how many kilometres the person has travelled in this journey.
 
 ------------------------------------
 Rules for movement and state changes
@@ -125,7 +124,7 @@ km]).
 
 Because the function is rather simple, I included a full implementation.
 However, the exact same functionality can also be accomplished using
-`numpy.random.choice()`.
+`numpy.random.choice()`, if you have access to the numpy library.
 
 `selectRoute()` is embedded in a more general function (`evolve()`), which evolves
 the position of a Person over a single timestep in the simulation. This
@@ -198,7 +197,7 @@ The Location class, too, has a number of simple parameters. These represent esse
 * name: the name of the Location.
 * x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.
 * y: GPS y-coordinate.
-* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0), certain to move out immediately (1) or will there be a mixture (0<`movechance`<1).
+* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0.0), certain to move out immediately (1.0) or will there be a mixture (0.0<`movechance`<1.0).
 * links: An array containing routes/links/paths to other Locations.
 * numAgents: A tracking variable that keeps count as to how many people are present at this Location.
 
@@ -206,11 +205,7 @@ The Location class, too, has a number of simple parameters. These represent esse
 Defining the Links
 ==================
 
-Another ingredient of our simulations is to interconnect our locations.
-Geographically-resolved models represent each Location by a pixel, but in our
-network-based model it is not immediately clear that give Locations are
-adjacent. To define adjacencies, we therefore create Link objects which
-interconnect a set of two locations:
+Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:
 ::
   class Link:
     def __init__(self, endpoint, distance):
@@ -223,7 +218,6 @@ interconnect a set of two locations:
 
       # number of agents that are in transit.
       self.numAgents = 0   
-
 
 The Links class is accompanied with the following attributes:
 
@@ -264,70 +258,69 @@ The Ecosystem class has the following attributes:
 * agents: A list of all the agents in our system.
 * time: Basically a clock, which contains the number of time steps that have been taken.
 
-Next, we need a function that adds locations to the Ecosystem:
+Next, we need a member function that adds locations to the Ecosystem:
 ::
-  def addLocation(self, name, x="0.0", y="0.0", movechance=0.1):
-    l = Location(name, x, y, movechance)
-    self.locations.append(l)
-    self.locationNames.append(l.name)
-    return l
+    def addLocation(self, name, x="0.0", y="0.0", movechance=0.1):
+      l = Location(name, x, y, movechance)
+      self.locations.append(l)
+      self.locationNames.append(l.name)
+      return l
 
 
 ...a function that adds Agents to the Ecosystem:
 ::
-  def addAgent(self, location):
-    self.agents.append(Person(location))
+    def addAgent(self, location):
+      self.agents.append(Person(location))
 
 
 ...and a function that adds Links to the Ecosystem:
 ::
-  def linkUp(self, endpoint1, endpoint2, distance="1.0"):
-    """ Creates a link between two endpoint locations
-    """
-    endpoint1_index = 0
-    endpoint2_index = 0
-    for i in range(0, len(self.locationNames)):
-      if(self.locationNames[i] == endpoint1):
-        endpoint1_index = i
-      if(self.locationNames[i] == endpoint2):
-        endpoint2_index = i
+    def linkUp(self, endpoint1, endpoint2, distance="1.0"):
+      """ Creates a link between two endpoint locations
+      """
+      endpoint1_index = 0
+      endpoint2_index = 0
+      for i in range(0, len(self.locationNames)):
+        if(self.locationNames[i] == endpoint1):
+          endpoint1_index = i
+        if(self.locationNames[i] == endpoint2):
+          endpoint2_index = i
 
-
-    self.locations[endpoint1_index].links.append( Link(self.locations[endpoint2_index], distance) )
-    self.locations[endpoint2_index].links.append( Link(self.locations[endpoint1_index], distance) )
+      self.locations[endpoint1_index].links.append( Link(self.locations[endpoint2_index], distance) )
+      self.locations[endpoint2_index].links.append( Link(self.locations[endpoint1_index], distance) )
 
 
 Crucially, we want to evolve the system in time. This is actually done using the following function:
 ::
-  def doTimeStep(self):
-    #update agent locations
-    for a in self.agents:
-      a.evolve()
+    def doTimeStep(self):
+      #update agent locations
+      for a in self.agents:
+        a.evolve()
 
-    for a in self.agents:
-      a.finish_travel()
+      #update agent travel on links
+      for a in self.agents:
+        a.finish_travel()
 
-    #update link properties
-
-    self.time += 1
+      self.time += 1
 
 
 Lastly, we add two functions to aid us in writing out some results.
 ::
-  def numAgents(self):
-    return len(self.agents)
+    def numAgents(self):
+      return len(self.agents)
 
-  def printInfo(self):
+    def printInfo(self):
 
-    print("Time: ", self.time, ", # of agents: ", len(self.agents))
-    for l in self.locations:
-      print(l.name, l.numAgents)
+      print("Time: ", self.time, ", # of agents: ", len(self.agents))
+      for l in self.locations:
+        print(l.name, l.numAgents)
     
-    my_file = open("agents.%.csv" % (self.time), "w")
+      my_file = open("agents.%.csv" % (self.time), "w")
     
-    my_file.write("#id,x,y\n")
-    of id,a in enumerate(self.agents):
-      my_file.write("%s,%s,%s\n" % (id, a.x, a.y))
+      my_file.write("#id,x,y\n")
+      for id,a in enumerate(self.agents):
+        my_file.write("%s,%s,%s\n" % (id, a.x, a.y))
+      my_file.close()
 
 
 =============================================
@@ -405,70 +398,70 @@ To show an animation of your results, you can paste the following code into a fi
   data_path = "example_output"
 
   def plot_location():
-      # sample data in data directory
-      location_df = pd.read_csv('%s/locations.csv' % data_path, index_col="#name")
-      city_names = location_df.index.tolist()
-      x = location_df.x
-      y = location_df.y
-      plt.scatter(x, y, s=300, alpha=0.5)
-      # label the points with the city names
-      for i, txt in enumerate(city_names):
-          plt.annotate(txt, (x[i], y[i]), xytext=(5, 5), textcoords='offset points', fontsize='12')
+    # sample data in data directory
+    location_df = pd.read_csv('%s/locations.csv' % data_path, index_col="#name")
+    city_names = location_df.index.tolist()
+    x = location_df.x
+    y = location_df.y
+    plt.scatter(x, y, s=300, alpha=0.5)
+    # label the points with the city names
+    for i, txt in enumerate(city_names):
+      plt.annotate(txt, (x[i], y[i]), xytext=(5, 5), textcoords='offset points', fontsize='12')
 
 
   def read_csv_to_df():
-      # Reads data from data directory
-      df_list = []
-      for file_path in glob.glob('%s/agents*.csv' % data_path):
-          dataframe = pd.read_csv(file_path, index_col='#id')
-          dataframe.apply(pd.to_numeric)
-          df_list.append(dataframe)
-      return df_list
+    # Reads data from data directory
+    df_list = []
+    for file_path in glob.glob('%s/agents*.csv' % data_path):
+      dataframe = pd.read_csv(file_path, index_col='#id')
+      dataframe.apply(pd.to_numeric)
+      df_list.append(dataframe)
+    return df_list
 
 
   def animate(i, df, scat):
-      scat.set_offsets(np.c_[df[i].x, df[i].y])
-      return scat
+    scat.set_offsets(np.c_[df[i].x, df[i].y])
+    return scat
 
 
   def save_animation(anim):
-      """
-      Requires your host system to have the "ffmpeg" pacakage installed
-      For mac use home brew: brew install ffmpeg
-      this will install a lot of other dependenies required as well
-      """
-      # Assumes output directory exists
-      anim.save('%s/agent_location.mp4' % data_path)
-      print('Animation saved in output directory')
+    """
+    Requires your host system to have the "ffmpeg" pacakage installed
+    For mac use home brew: brew install ffmpeg
+    this will install a lot of other dependenies required as well
+    """
+    # Assumes output directory exists
+    anim.save('%s/agent_location.mp4' % data_path)
+    print('Animation saved in output directory')
 
 
   def main():
  
-      if len(sys.argv)>1:
-          data_path = sys.argv[1]
+    if len(sys.argv)>1:
+      data_path = sys.argv[1]
 
-      fig, ax = plt.subplots(figsize=(5, 3))
-      #ax.set(xlim=(-10, 110), ylim=(-10, 110))
+    fig, ax = plt.subplots(figsize=(5, 3))
+    #ax.set(xlim=(-10, 110), ylim=(-10, 110))
 
-      num_files = len(glob.glob('%s/agents*.csv' % data_path))
-      scat = ax.scatter([], [])
-      plot_location()
+    num_files = len(glob.glob('%s/agents*.csv' % data_path))
+    scat = ax.scatter([], [])
+    plot_location()
 
-      print("# of frames: ",num_files)
+    print("# of frames: ",num_files)
 
-      dataframe_list = read_csv_to_df()
-      # time between frames can be changed by adjusting the interval param which is in milliseconds
-      anim = FuncAnimation(
-          fig, animate, interval=1000, frames=range(num_files), fargs=(dataframe_list, scat))
+    dataframe_list = read_csv_to_df()
+    # time between frames can be changed by adjusting the interval param which is in milliseconds
+    anim = FuncAnimation(
+        fig, animate, interval=1000, frames=range(num_files), fargs=(dataframe_list, scat))
 
-      plt.draw()
-      # shows the output on screen
-      plt.show()
-      # uncomment line below to save as mp4 video file
-      # save_animation(anim)
+    plt.draw()
+    # shows the output on screen
+    plt.show()
+    # uncomment line below to save as mp4 video file
+    # save_animation(anim)
 
   if __name__ == "__main__":
-      main()
+    main()
 
 Once you have done so, you can then create an animation on your screen using the command:
 `python3 make_animation.py <name_of_directory_with_output_files>`
