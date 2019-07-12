@@ -46,9 +46,9 @@ simulation progresses.
 
 In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas. It is possible to use a network-based model to approximate a geographically pixelated model, by placing all locations on Carthesian coordinates. 
 
--------------------
+===================
 The simulation code
--------------------
+===================
 
 What follows is a step-by-step explanation how you can use Python3 to build an agent-based simulation code. The code works as is, but as part of this tutorial you will be given the opportunity to change some of its features, so that you can make it suit your personal needs.
 
@@ -58,9 +58,9 @@ Imports
 
 In this tutorial we use very few dependencies for the main simulation code, but the random library is an essential one, as agent-based simulations strongly rely on randomizers. We do require a few more dependencies for visualizing results, namely matplotlib, pandas, and ffmpeg for storing animations.
 
-------------------------
+========================
 Defining a single person
-------------------------
+========================
 
 We first start by defining a simple class which describes a person. Let's name
 this class "Person", so that we could choose to reuse the class for other
@@ -350,9 +350,9 @@ Lastly, we add two functions to aid us in writing out some results.
       my_file.close()
 
 
-=============================================
-Creating and running a Agent-based Simulation
-=============================================
+==============================================
+Creating and running an Agent-based Simulation
+==============================================
 
 We have now created all the essential classes to perform an agent-based
 simulation. Here we describe how you can construct and run a simple ABM
@@ -410,6 +410,11 @@ information after each time step:
 ...and with that all in place, you have just established your first working ABM
 model!
 
+You can run your simulation using:
+`python3 <name_of_the_python_script_in_which_you_stored_your_code>`
+
+If it runs successfully, it will create 11 CSV files in the directory that you launch it from. These files include `locations.csv` as well as 10 agent log files, named `agents.1.csv` all the way to `agents.10.csv`.
+
 ==================================
 Optional: Visualizing your results
 ==================================
@@ -425,7 +430,7 @@ To show an animation of your results, you can paste the following code into a fi
   import pandas as pd
   from matplotlib.animation import FuncAnimation
 
-  data_path = "example_output"
+  data_path = "abm-tut-output"
 
   def plot_location():
     # sample data in data directory
@@ -442,7 +447,11 @@ To show an animation of your results, you can paste the following code into a fi
   def read_csv_to_df():
     # Reads data from data directory
     df_list = []
-    for file_path in glob.glob('%s/agents*.csv' % data_path):
+    
+    num_files = len(glob.glob('%s/agents.*.csv' % data_path))
+    for i in range(1,num_files+1):
+      file_path = '%s/agents.%s.csv' % (data_path, i)
+      print(file_path)
       dataframe = pd.read_csv(file_path, index_col='#id')
       dataframe.apply(pd.to_numeric)
       df_list.append(dataframe)
@@ -462,12 +471,13 @@ To show an animation of your results, you can paste the following code into a fi
     """
     # Assumes output directory exists
     anim.save('%s/agent_location.gif' % data_path, writer='imagemagick')
-    print('Animation saved as gif in directory: %s' % data_path)
+    print('Animation saved in output directory')
 
 
   def main():
- 
+
     if len(sys.argv)>1:
+      global data_path
       data_path = sys.argv[1]
 
     fig, ax = plt.subplots(figsize=(5, 3))
@@ -482,16 +492,17 @@ To show an animation of your results, you can paste the following code into a fi
     dataframe_list = read_csv_to_df()
     # time between frames can be changed by adjusting the interval param which is in milliseconds
     anim = FuncAnimation(
-        fig, animate, interval=1000, frames=range(num_files), fargs=(dataframe_list, scat))
+      fig, animate, interval=1000, frames=range(num_files), fargs=(dataframe_list, scat))
 
     plt.draw()
     # shows the output on screen
     plt.show()
     # uncomment line below to save as mp4 video file
-    save_animation(anim)
+    # save_animation(anim)
+
 
   if __name__ == "__main__":
     main()
-
+    
 Once you have done so, you can then create an animation on your screen using the command:
 `python3 make_animation.py <name_of_directory_with_output_files>`
