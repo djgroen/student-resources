@@ -1,7 +1,7 @@
 #name,x,y
-Source1,200,0
-Source2,100,100
-Transit1,100,0
-Transit2,200,100
+Source1,100,0
+Source2,200,150
+Transit1,200,0
+Transit2,100,150
 Sink1,300,0
-Sink2,0,100
+Sink2,0,150

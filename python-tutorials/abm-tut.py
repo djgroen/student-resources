@@ -48,8 +48,8 @@ class Person:
     # if the person resides on a link between locations, it is "travelling"
     if self.travelling:
 
-      # increment the distance covered by 10 kilometers.
-      self.distance_travelled_on_link += 10
+      # increment the distance covered by 25 kilometers.
+      self.distance_travelled_on_link += 25
 
       # get the length of the current route (link).
       link_length = self.location.distance
@@ -60,7 +60,15 @@ class Person:
         self.location = self.location.endpoint
         self.location.numAgents += 1
         self.travelling = False
-        
+        self.distance_travelled_on_link = 0
+
+    if self.travelling:
+        self.x = self.location.calc_x(self.distance_travelled_on_link)
+        self.y = self.location.calc_y(self.distance_travelled_on_link)
+    else:
+      self.x = self.location.x
+      self.y = self.location.y
+
 class Location:
   def __init__(self, name, x=0.0, y=0.0, movechance=0.001):
     self.name = name
@@ -71,16 +79,25 @@ class Location:
     self.numAgents = 0
     
 class Link:
-  def __init__(self, endpoint, distance):
+  def __init__(self, startpoint, endpoint, distance):
 
     # distance in km.
     self.distance = float(distance)
 
     # links for now always connect two endpoints
     self.endpoint = endpoint
+    self.startpoint = startpoint
 
     # number of agents that are in transit.
     self.numAgents = 0
+
+  def calc_x(self, d):
+    dist_ratio = float (d) / float (self.distance)
+    return (dist_ratio) * float(self.startpoint.x) + (1.0-dist_ratio) * float(self.endpoint.x)
+    
+  def calc_y(self, d):
+    dist_ratio = float (d) / float (self.distance)
+    return (dist_ratio) * float(self.startpoint.y) + (1.0-dist_ratio) * float(self.endpoint.y)
     
 class Ecosystem:
   def __init__(self):
@@ -109,8 +126,8 @@ class Ecosystem:
       if(self.locationNames[i] == endpoint2):
         endpoint2_index = i
 
-    self.locations[endpoint1_index].links.append( Link(self.locations[endpoint2_index], distance) )
-    self.locations[endpoint2_index].links.append( Link(self.locations[endpoint1_index], distance) )
+    self.locations[endpoint1_index].links.append( Link(self.locations[endpoint1_index], self.locations[endpoint2_index], distance) )
+    self.locations[endpoint2_index].links.append( Link(self.locations[endpoint2_index], self.locations[endpoint1_index], distance) )
     
   def doTimeStep(self):
     #update agent locations
@@ -154,19 +171,19 @@ if __name__ == "__main__":
 
   e = Ecosystem()
 
-  l1 = e.addLocation("Source1",x=200,y=0)
-  l2 = e.addLocation("Source2",x=100,y=100)
-  l3 = e.addLocation("Transit1",x=100,y=0)
-  l4 = e.addLocation("Transit2",x=200,y=100)
+  l1 = e.addLocation("Source1",x=100,y=0)
+  l2 = e.addLocation("Source2",x=200,y=150)
+  l3 = e.addLocation("Transit1",x=200,y=0)
+  l4 = e.addLocation("Transit2",x=100,y=150)
   l5 = e.addLocation("Sink1",x=300,y=0)
-  l6 = e.addLocation("Sink2",x=0,y=100)
+  l6 = e.addLocation("Sink2",x=0,y=150)
   
   e.linkUp("Source1","Transit1","100.0")
-  e.linkUp("Source1","Transit2","50.0")
-  e.linkUp("Source2","Transit1","100.0")
-  e.linkUp("Source2","Transit2","50.0")
-  e.linkUp("Transit1","Sink1","200.0")
-  e.linkUp("Transit2","Sink2","200.0")
+  e.linkUp("Source1","Transit2","150.0")
+  e.linkUp("Source2","Transit1","150.0")
+  e.linkUp("Source2","Transit2","100.0")
+  e.linkUp("Transit1","Sink1","100.0")
+  e.linkUp("Transit2","Sink2","100.0")
   
   for i in range(0,100):
     e.addAgent(location=l1)

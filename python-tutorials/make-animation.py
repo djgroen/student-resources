@@ -52,7 +52,7 @@ def main():
         data_path = sys.argv[1]
 
     fig, ax = plt.subplots(figsize=(5, 3))
-    ax.set(xlim=(-10, 110), ylim=(-10, 110))
+    #ax.set(xlim=(-10, 110), ylim=(-10, 110))
 
     num_files = len(glob.glob('%s/agents*.csv' % data_path))
     scat = ax.scatter([], [])
