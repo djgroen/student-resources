@@ -461,8 +461,8 @@ To show an animation of your results, you can paste the following code into a fi
     this will install a lot of other dependenies required as well
     """
     # Assumes output directory exists
-    anim.save('%s/agent_location.mp4' % data_path)
-    print('Animation saved in output directory')
+    anim.save('%s/agent_location.gif' % data_path, writer='imagemagick')
+    print('Animation saved as gif in directory: %s' % data_path)
 
 
   def main():
@@ -488,7 +488,7 @@ To show an animation of your results, you can paste the following code into a fi
     # shows the output on screen
     plt.show()
     # uncomment line below to save as mp4 video file
-    # save_animation(anim)
+    save_animation(anim)
 
   if __name__ == "__main__":
     main()
