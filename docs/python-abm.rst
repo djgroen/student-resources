@@ -234,11 +234,11 @@ Another ingredient of our simulations is to interconnect our locations. In our n
     
     def calc_x(self, d):
       dist_ratio = float (d) / float (self.distance)
-      return (dist_ratio) * float(self.startpoint.x) + (1.0-dist_ratio) * float(self.endpoint.x)
+      return (1.0-dist_ratio) * float(self.startpoint.x) + (dist_ratio) * float(self.endpoint.x)
     
     def calc_y(self, d):
       dist_ratio = float (d) / float (self.distance)
-      return (dist_ratio) * float(self.startpoint.y) + (1.0-dist_ratio) * float(self.endpoint.y)
+      return (1.0-dist_ratio) * float(self.startpoint.y) + (dist_ratio) * float(self.endpoint.y)
 
 The Links class is accompanied with the following attributes:
 
