@@ -22,7 +22,10 @@ def plot_location():
 def read_csv_to_df():
     # Reads data from data directory
     df_list = []
-    for file_path in glob.glob('%s/agents*.csv' % data_path):
+    
+    num_files = len(glob.glob('%s/agents.*.csv' % data_path))
+    for i in range(1,num_files+1):
+        file_path = '%s/agents.%s.csv' % (data_path, i)
         print(file_path)
         dataframe = pd.read_csv(file_path, index_col='#id')
         dataframe.apply(pd.to_numeric)
