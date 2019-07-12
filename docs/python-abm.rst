@@ -70,13 +70,12 @@ simulation purposes.
     def __init__(self, location):
       self.ill = False
       self.injured = False
+      self.x = 0.0
+      self.y = 0.0
   
       self.age = 35
       self.location = location
       self.location.numAgents += 1
-      
-      self.x = 0.0
-      self.y = 0.0
 
       # Set to true when an agent resides on a link.
       self.travelling = False
@@ -87,6 +86,7 @@ I gave the Person class a simple constructor (see the _init_() function), which 
 
 * healthy: which indicates whether a Person is generally healthy or ill/weakened.
 * injured: which indicates whether a Person is physically injured or not.
+* x,y: x and y GPS coordinate, to be updated as the simulation progresses.
 * age: age in years.
 * location: a reference to the location where the Person currently resides.
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
@@ -175,6 +175,15 @@ destination we create one more function, namely `finish_travel()`
         self.location = self.location.endpoint
         self.location.numAgents += 1
         self.travelling = False
+        self.distance_travelled_on_link = 0
+
+    # Update the X and Y coordinates of each agent
+    if self.travelling:
+        self.x = self.location.calc_x(self.distance_travelled_on_link)
+        self.y = self.location.calc_y(self.distance_travelled_on_link)
+    else:
+      self.x = self.location.x
+      self.y = self.location.y
 
 This function allows us to track agents who are on links, and have them progress gradually.
 
@@ -211,16 +220,25 @@ Defining the Links
 Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:
 ::
   class Link:
-    def __init__(self, endpoint, distance):
+    def __init__(self, startpoint, endpoint, distance):
 
       # distance in km.
       self.distance = float(distance)
 
       # links for now always connect two endpoints
       self.endpoint = endpoint
+      self.startpoint = startpoint
 
       # number of agents that are in transit.
       self.numAgents = 0   
+    
+    def calc_x(self, d):
+      dist_ratio = float (d) / float (self.distance)
+      return (dist_ratio) * float(self.startpoint.x) + (1.0-dist_ratio) * float(self.endpoint.x)
+    
+    def calc_y(self, d):
+      dist_ratio = float (d) / float (self.distance)
+      return (dist_ratio) * float(self.startpoint.y) + (1.0-dist_ratio) * float(self.endpoint.y)
 
 The Links class is accompanied with the following attributes:
 
@@ -228,7 +246,7 @@ The Links class is accompanied with the following attributes:
 * endpoint: A reference to the Location to which this Link will lead.
 * numAgents: Our all-familiar tracking variable that keeps count as to how many people are in transit on this link.
 
-Note: As Links are stored in arrays as part of each (starting) Location, we do not need to define the starting Location as a parameter of this class.
+It also has two functions, `calc_x()` and `calc_y()`, which calculate the GPS x and y coordinate for agents residing on a link (those that are travelling).
 
 ========================
 From state to simulation
@@ -289,8 +307,8 @@ Next, we need a member function that adds locations to the Ecosystem:
         if(self.locationNames[i] == endpoint2):
           endpoint2_index = i
 
-      self.locations[endpoint1_index].links.append( Link(self.locations[endpoint2_index], distance) )
-      self.locations[endpoint2_index].links.append( Link(self.locations[endpoint1_index], distance) )
+      self.locations[endpoint1_index].links.append( Link(self.locations[endpoint1_index], self.locations[endpoint2_index], distance) )
+      self.locations[endpoint2_index].links.append( Link(self.locations[endpoint2_index], self.locations[endpoint1_index], distance) )
 
 
 Crucially, we want to evolve the system in time. This is actually done using the following function:
@@ -312,8 +330,14 @@ Lastly, we add two functions to aid us in writing out some results.
     def numAgents(self):
       return len(self.agents)
 
-    def printInfo(self):
+    def printLocationInfo(self):
+      my_file = open("locations.csv", "w")
+      my_file.write("#name,x,y\n")
+      for l in self.locations:
+        my_file.write("%s,%s,%s\n" % (l.name, l.x, l.y))
+      my_file.close()
 
+    def printInfo(self):
       print("Time: ", self.time, ", # of agents: ", len(self.agents))
       for l in self.locations:
         print(l.name, l.numAgents)
@@ -370,10 +394,13 @@ source location l1. To do that, we use the addAgent() function a hundred times.
       e.addAgent(location=l1)
 
 
-With all the agents in place, we can now proceed to run the simulation. We run
+With all the agents in place, we can now proceed to run the simulation. We first
+print all the locations to a CSV file for later reference. Next, we run
 the simulation for a duration of 10 time steps, and we print basic diagnostic
 information after each time step:
 ::
+    e.printLocationInfo()
+
     duration=10
     for t in range(0,duration):
       e.doTimeStep()
