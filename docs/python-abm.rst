@@ -74,6 +74,9 @@ simulation purposes.
       self.age = 35
       self.location = location
       self.location.numAgents += 1
+      
+      self.x = 0.0
+      self.y = 0.0
 
       # Set to true when an agent resides on a link.
       self.travelling = False
@@ -315,7 +318,7 @@ Lastly, we add two functions to aid us in writing out some results.
       for l in self.locations:
         print(l.name, l.numAgents)
     
-      my_file = open("agents.%.csv" % (self.time), "w")
+      my_file = open("agents.%s.csv" % (self.time), "w")
     
       my_file.write("#id,x,y\n")
       for id,a in enumerate(self.agents):
