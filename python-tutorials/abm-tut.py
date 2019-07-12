@@ -15,34 +15,34 @@ class Person:
     self.travelling = False
     self.distance_travelled_on_link = 0
     
-    def selectRoute(self):
-      total_score = 0.0
-      for i in range(0,len(self.location.links)):
-        total_score += 40000.0 / (10.0 + self.location.links[i].distance)
+  def selectRoute(self):
+    total_score = 0.0
+    for i in range(0,len(self.location.links)):
+      total_score += 40000.0 / (10.0 + self.location.links[i].distance)
 
-      selected_value = random.random() * total_score
+    selected_value = random.random() * total_score
 
-      checked_score = 0.0
-      for i in range(0,len(self.location.links)):
-        checked_score += 40000.0 / (10.0 + self.location.links[i].distance)
-        if selected_value < checked_score:
-          return i
+    checked_score = 0.0
+    for i in range(0,len(self.location.links)):
+      checked_score += 40000.0 / (10.0 + self.location.links[i].distance)
+      if selected_value < checked_score:
+        return i
         
-    def evolve(self):
+  def evolve(self):
 
-      if not self.travelling:
-        movechance = self.location.movechance
-        outcome = random.random()
+    if not self.travelling:
+      movechance = self.location.movechance
+      outcome = random.random()
 
-        if outcome < movechance:
-          # determine here which route to take?
-          chosenRoute = self.selectRoute()
+      if outcome < movechance:
+        # determine here which route to take?
+        chosenRoute = self.selectRoute()
 
-          # update location to link endpoint
-          self.location.numAgents -= 1
-          self.location = self.location.links[chosenRoute]
-          self.location.numAgents += 1
-          self.travelling = True
+        # update location to link endpoint
+        self.location.numAgents -= 1
+        self.location = self.location.links[chosenRoute]
+        self.location.numAgents += 1
+        self.travelling = True
          
   def finish_travel(self):
     # if the person resides on a link between locations, it is "travelling"
@@ -126,6 +126,16 @@ class Ecosystem:
   def numAgents(self):
     return len(self.agents)
 
+
+  def printLocationInfo(self):
+
+    my_file = open("locations.csv", "w")
+    my_file.write("#name,x,y\n")
+    for l in self.locations:
+      my_file.write("%s,%s,%s\n" % (l.name, l.x, l.y))
+    my_file.close()
+
+
   def printInfo(self):
 
     print("Time: ", self.time, ", # of agents: ", len(self.agents))
@@ -160,7 +170,9 @@ if __name__ == "__main__":
   
   for i in range(0,100):
     e.addAgent(location=l1)
-    
+
+  e.printLocationInfo()
+
   duration=10
   for t in range(0,duration):
     e.doTimeStep()

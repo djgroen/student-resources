@@ -5,7 +5,7 @@ import sys
 import pandas as pd
 from matplotlib.animation import FuncAnimation
 
-data_path = "example_output"
+data_path = "abm-tut-output"
 
 def plot_location():
     # sample data in data directory
@@ -48,6 +48,7 @@ def save_animation(anim):
 def main():
 
     if len(sys.argv)>1:
+        global data_path
         data_path = sys.argv[1]
 
     fig, ax = plt.subplots(figsize=(5, 3))
