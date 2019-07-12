@@ -23,6 +23,7 @@ def read_csv_to_df():
     # Reads data from data directory
     df_list = []
     for file_path in glob.glob('%s/agents*.csv' % data_path):
+        print(file_path)
         dataframe = pd.read_csv(file_path, index_col='#id')
         dataframe.apply(pd.to_numeric)
         df_list.append(dataframe)
@@ -41,7 +42,7 @@ def save_animation(anim):
     this will install a lot of other dependenies required as well
     """
     # Assumes output directory exists
-    anim.save('%s/agent_location.mp4' % data_path)
+    anim.save('%s/agent_location.gif' % data_path, writer='imagemagick')
     print('Animation saved in output directory')
 
 
