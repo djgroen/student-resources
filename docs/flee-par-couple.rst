@@ -30,6 +30,7 @@ Parallel Flee
 ==============================
 
 The simplest way to run the parallel code is to run it with the `test_par.py` testing script. To run a parallel version of Flee, please:
+
 1. Make sure you've navigated the the Flee installation directory in the terminal.
 2. Type `mpirun -np 2 python3 test_par.py 5` to run Flee across 2 cores.
 3. To measure the execution time of your run, type `time mpirun -np 2 python3 test_par.py 5` to run Flee across 2 cores.
@@ -49,6 +50,7 @@ Coupled micro-macro
 ==============================
 
 To run a basic micro-macro coupled model, you can use the test script `mscalecity.py`. Because you are running two models, you'll need to open two terminals for this part.
+
 1. In the first terminal, go to your Flee installation directory, and type `python3 mscalecity.py 0`. This will start a microscale model of a small town.
 2. In the second terminal, go to your Flee installation directory, and type `python3 mscalecity.py 1`. This will start a macroscale model of a hypothetical country.
 
