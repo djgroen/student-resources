@@ -419,7 +419,18 @@ If it runs successfully, it will create 11 CSV files in the directory that you l
 Optional: Visualizing your results
 ==================================
 
-*NOTE: for this section, you will need the Python3 matplotlib and pandas packages.*
+In this section we will try to create a visualization of your simulation, so you can explore how the agents move around the location graph.
+
+-----------------------
+installing dependencies
+-----------------------
+For this section, you will need the Python3 matplotlib and pandas packages. In addition, to save the visualizations, you will need to install imagemagick. One way to install these on Linux platforms is by using the following commands:
+
+`pip3 install pandas`, `pip3 install matplotlib` and `sudo apt install imagemagick`.
+
+-----------------------
+Main visualization
+-----------------------
 
 To show an animation of your results, you can paste the following code into a file named `make_animation.py`.
 ::
