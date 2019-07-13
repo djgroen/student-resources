@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 .. image:: derek_eos_square.png
-   :scale: 50 %
+   :width: 50%
 
 Educational resources for students
 ===========================================================
