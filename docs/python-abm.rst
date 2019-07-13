@@ -441,7 +441,7 @@ To show an animation of your results, you can paste the following code into a fi
   import pandas as pd
   from matplotlib.animation import FuncAnimation
 
-  data_path = "abm-tut-output"
+  data_path = "."
 
   def plot_location():
     # sample data in data directory
