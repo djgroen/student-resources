@@ -16,7 +16,7 @@ Tutorials
    :maxdepth: 2
 
    python-abm
-
+   flee-par-couple
 
 Key FabSim3 reference documents
 -------------------------------
