@@ -17,7 +17,7 @@ In this tutorial we will cover the following aspects:
 
 We will focus primarily on just running basic versions of each type, so that you get a rough idea how these things would work on your local machine.
 
-_Although this tutorial is brief, it may still be difficult to get everything working in 30 minutes, so feel free to pick your favourite subsection and start with that._
+**Although this tutorial is brief, it may still be difficult to get everything working in 30 minutes, so feel free to pick your favourite subsection and start with that.**
 
 ------------
 Requirements
