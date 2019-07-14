@@ -134,8 +134,8 @@ For convenience, place this file in the same directory where you have placed the
 2. To run Flee, stay within the same directory, and type `python3 run.py input_csv source_data 300 > out.csv`.
 3. To visualize the result, you can use the `out.csv` file with your plotting scripts as you have done before in the Flee tutorial.
 
-Advanced material
------------------
+Advanced/Optional material
+--------------------------
 
 If you are interested in incorporating weather data with the Flee model (or your own), please drop us a line, as we are currently working on that topic.
 
@@ -149,3 +149,5 @@ And lastly, if you wish to try out other agent-based modelling platforms, have a
 
 * NetLogo: https://ccl.northwestern.edu/netlogo/docs/ or https://netlogoweb.org/ (web-based version)
 * RePast: https://repast.github.io/docs.html
+
+Lastly, we maintain a GitHub repository giving information about nearly anything that we could think of in academia right here: http://www.github.com/djgroen/student-resources .
