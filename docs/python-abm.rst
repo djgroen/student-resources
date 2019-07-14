@@ -16,16 +16,14 @@ In this tutorial we will cover the following aspects:
 - Observing uncertainty in your simulation results.
 - Basic steps towards designing and prototyping your own model.
 
-
-------------
 Requirements
-------------
+============
 
 To do this tutorial, you need a working Python3 installation. Numpy and pyplot are useful, but optional.
 
-==============================
+
 Introduction: What is agent-based modelling?
-==============================
+--------------------------------------------
 
 agent-based model (ABM) 
   a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.
@@ -46,9 +44,8 @@ simulation progresses.
 
 In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas. It is possible to use a network-based model to approximate a geographically pixelated model, by placing all locations on Carthesian coordinates. 
 
-===================
 The simulation code
-===================
+-------------------
 
 What follows is a step-by-step explanation how you can use Python3 to build an agent-based simulation code. The code works as is, but as part of this tutorial you will be given the opportunity to change some of its features, so that you can make it suit your personal needs.
 
@@ -58,9 +55,9 @@ Imports
 
 In this tutorial we use very few dependencies for the main simulation code, but the random library is an essential one, as agent-based simulations strongly rely on randomizers. We do require a few more dependencies for visualizing results, namely matplotlib, pandas, and ffmpeg for storing animations.
 
-========================
+
 Defining a single person
-========================
+------------------------
 
 We first start by defining a simple class which describes a person. Let's name
 this class "Person", so that we could choose to reuse the class for other
@@ -92,9 +89,9 @@ I gave the Person class a simple constructor (see the _init_() function), which 
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
 * distance_travelled_on_link: if currently in transit, how many kilometres the person has travelled in this journey.
 
-------------------------------------
+
 Rules for movement and state changes
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now each Person will have to make decisions at different moment. In this code,
 we model two types of decisions:
@@ -187,9 +184,9 @@ destination we create one more function, namely `finish_travel()`
 
 This function allows us to track agents who are on links, and have them progress gradually.
 
-======================
+
 Defining the Locations
-======================
+----------------------
 
 Now Persons will reside at a given place, or Location. To define these places
 in a networked model, we create a Location object for each place:
@@ -213,9 +210,8 @@ The Location class, too, has a number of simple parameters. These represent esse
 * links: An array containing routes/links/paths to other Locations.
 * numAgents: A tracking variable that keeps count as to how many people are present at this Location.
 
-==================
 Defining the Links
-==================
+------------------
 
 Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:
 ::
@@ -248,9 +244,9 @@ The Links class is accompanied with the following attributes:
 
 It also has two functions, `calc_x()` and `calc_y()`, which calculate the GPS x and y coordinate for agents residing on a link (those that are travelling).
 
-========================
+
 From state to simulation
-========================
+------------------------
 
 We now have people, locations, and links that represent connections between
 these locations. These are essential components for an agent-based model in
@@ -350,9 +346,8 @@ Lastly, we add two functions to aid us in writing out some results.
       my_file.close()
 
 
-==============================================
 Creating and running an Agent-based Simulation
-==============================================
+----------------------------------------------
 
 We have now created all the essential classes to perform an agent-based
 simulation. Here we describe how you can construct and run a simple ABM
@@ -415,22 +410,22 @@ You can run your simulation using:
 
 If it runs successfully, it will create 11 CSV files in the directory that you launch it from. These files include `locations.csv` as well as 10 agent log files, named `agents.1.csv` all the way to `agents.10.csv`.
 
-==================================
+
 Optional: Visualizing your results
-==================================
+----------------------------------
 
 In this section we will try to create a visualization of your simulation, so you can explore how the agents move around the location graph.
 
------------------------
+
 installing dependencies
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 For this section, you will need the Python3 matplotlib and pandas packages. In addition, to save the visualizations, you will need to install imagemagick. One way to install these on Linux platforms is by using the following commands:
 
 `pip3 install pandas`, `pip3 install matplotlib` and `sudo apt install imagemagick`.
 
------------------------
+
 Main visualization
------------------------
+~~~~~~~~~~~~~~~~~~
 
 To show an animation of your results, you can paste the following code into a file named `make_animation.py`.
 ::
