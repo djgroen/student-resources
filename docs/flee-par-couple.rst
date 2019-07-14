@@ -6,8 +6,8 @@ Advanced use of the Flee code.
 Written by Derek Groen (Derek.Groen@brunel.ac.uk), with help from Hamid Arabnejad, Diana Suleimenova and Gebremariam Assres.
 
 In this 30-minute tutorial, you will learn how to run the parallel version of Flee and how to run a coupled simulation. The content of this tutorial is derived from two conference papers, which are
-- ...
-- ...
+- Groen, D., 2018, June. Development of a multiscale simulation approach for forced migration. In International Conference on Computational Science (pp. 869-875). Springer, Cham.
+- Groen et al., Towards Modelling the Effect of Evolving Violence on Forced Migration, accepted for the Winter Simulation Conference 2019
 
 In this tutorial we will cover the following aspects:
 
@@ -15,7 +15,9 @@ In this tutorial we will cover the following aspects:
 - How to run a coupled simulation, with a microscale and macroscale migration model.
 - How to run a coupled simulation, with Flee and a conflict evolution model
 
-Because this tutorial is so brief, we will focus primarily on just running basic versions of each type, so that you get a rough idea how these things would work on your local machine.
+We will focus primarily on just running basic versions of each type, so that you get a rough idea how these things would work on your local machine.
+
+_Although this tutorial is brief, it may still be difficult to get everything working in 30 minutes, so feel free to pick your favourite subsection and start with that._
 
 ------------
 Requirements
@@ -59,4 +61,81 @@ Once you have typed the second command, you should see output being written to t
 ==============================
 Coupled Flare-Flee
 ==============================
+
+A detailed tutorial on running Flee with conflict evolution, using the FabSim3 automation toolkit, can be found here: https://github.com/djgroen/FabFlee/blob/master/doc/Tutorial.md . In this simplified tutorial, we simply explain the manual steps you can take to run Flare, transport the output data, and run a Flee simulation based on the obtained conflict evolution.
+
+To do this tutorial, you will need to download all the files in the following directory: https://github.com/djgroen/FabFlee/tree/master/config_files/mali . You also need to have the Flee and Flare codes installed.
+
+To run Flare easily, you should make a script called `run_flare.py`, which should contain the following code:
+::
+  from flee import InputGeography
+  from flare import Ecosystem
+  import numpy as np
+  import sys
+
+  if __name__ == "__main__":
+
+    end_time = 100
+
+    if len(sys.argv)>1:
+        if (sys.argv[1]).isnumeric():
+            end_time = int(sys.argv[1])
+
+    if len(sys.argv)>2:
+        input_dir = sys.argv[2]
+    else:
+        input_dir = "test_input_csv"
+
+
+    if len(sys.argv)>3:
+        out_file = sys.argv[3]
+    else:
+        out_file = "flare-out.csv"
+
+
+    ig = InputGeography.InputGeography()
+
+    ig.ReadLocationsFromCSV("%s/locations.csv" % input_dir)
+
+    ig.ReadLinksFromCSV("%s/routes.csv" % input_dir)
+
+    e = Ecosystem.Ecosystem()
+
+    lm = e.StoreInputGeographyInEcosystem(ig)
+
+    #print("Network data loaded")
+
+    file = open("%s" % out_file,"w")
+
+    output_header_string = "#Day,"
+
+    for l in e.locations:
+        output_header_string += " %s," % (l.name)
+    
+    output_header_string += "\n"
+    file.write(output_header_string)
+
+    for t in range(0,end_time):
+
+        e.evolve()
+
+        output = "%s" % t
+
+        for l in e.locations:
+            if l.flare:
+                output +=",1"
+            else: 
+                output +=",0"
+
+        output += "\n"
+        file.write(output)
+
+    file.close()
+
+For convenience, place this file in the same directory where you have placed the input files for the Mali conflict.
+
+1. To run Flare, you can then type `python3 run_flare.py 300 input_csv input_csv/conflicts.csv`. This will generate a new `conflicts.csv` file, which you can load into Flee.
+2. To run Flee, stay within the same directory, and type `python3 run.py input_csv source_data 300 > out.csv`.
+3. To visualize the result, you can use the `out.csv` file with your plotting scripts as you have done before in the Flee tutorial.
+
 
