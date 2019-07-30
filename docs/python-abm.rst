@@ -49,7 +49,9 @@ The simulation code
 
 What follows is a step-by-step explanation how you can use Python3 to build an agent-based simulation code. The code works as is, but as part of this tutorial you will be given the opportunity to change some of its features, so that you can make it suit your personal needs.
 
-Imports
+To start off, please make a new Python file named **my-abm.py**. Unless specified otherwise, please place any Python fragments following in this tutorial at the _bottom_ of this file.
+
+To start off, we will need to import one library, so that we can use the randomizer.
 ::
   import random
 
