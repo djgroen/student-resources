@@ -91,7 +91,6 @@ I gave the Person class a simple constructor (see the _init_() function), which 
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
 * distance_travelled_on_link: if currently in transit, how many kilometres the person has travelled in this journey.
 
-
 Rules for movement and state changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -211,6 +210,15 @@ The Location class, too, has a number of simple parameters. These represent esse
 * movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0.0), certain to move out immediately (1.0) or will there be a mixture (0.0<`movechance`<1.0).
 * links: An array containing routes/links/paths to other Locations.
 * numAgents: A tracking variable that keeps count as to how many people are present at this Location.
+
+.. sidebar:: Want to try it out?
+
+    To test whether what you wrote works, make a second file, named `test.py` in the same directory. In that file, put the following:
+    ::
+      import my-abm
+      l = new Location("a", x=0.2, y=2.0, movechance=0.0)
+      p = new Person(l)
+      print(p.l.name)
 
 Defining the Links
 ~~~~~~~~~~~~~~~~~~
