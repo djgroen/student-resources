@@ -57,6 +57,73 @@ To start off, we will need to import one library, so that we can use the randomi
 
 In this tutorial we use very few dependencies for the main simulation code, but the random library is an essential one, as agent-based simulations strongly rely on randomizers. We do require a few more dependencies for visualizing results, namely matplotlib, pandas, and ffmpeg for storing animations.
 
+Defining the Location Graph
+============================================
+
+Now any Persons in the simulation will reside at a given place, or Location. To define these places
+in a networked model, we create a Location object for each place:
+::
+  class Location:
+    def __init__(self, name, x=0.0, y=0.0, movechance=0.001):
+      self.name = name
+      self.x = x
+      self.y = y
+      self.movechance = movechance
+      self.links = []
+      self.numAgents = 0
+
+
+The Location class, has a number of simple parameters. These represent essential characteristics for individual locations:
+
+* name: the name of the Location.
+* x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.
+* y: GPS y-coordinate.
+* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0.0), certain to move out immediately (1.0) or will there be a mixture (0.0<`movechance`<1.0).
+* links: An array containing routes/links/paths to other Locations.
+* numAgents: A tracking variable that keeps count as to how many people are present at this Location.
+
+.. sidebar:: Want to try it out?
+
+    To test whether what you wrote works, make a second file, named `test.py` in the same directory. In that file, put the following:
+    ::
+      import my-abm
+      l = new Location("a", x=0.2, y=2.0, movechance=0.0)
+      print(l.name, l.x, l.y)
+
+Defining the Links
+~~~~~~~~~~~~~~~~~~
+
+Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:
+::
+  class Link:
+    def __init__(self, startpoint, endpoint, distance):
+
+      # distance in km.
+      self.distance = float(distance)
+
+      # links for now always connect two endpoints
+      self.endpoint = endpoint
+      self.startpoint = startpoint
+
+      # number of agents that are in transit.
+      self.numAgents = 0   
+    
+    def calc_x(self, d):
+      dist_ratio = float (d) / float (self.distance)
+      return (1.0-dist_ratio) * float(self.startpoint.x) + (dist_ratio) * float(self.endpoint.x)
+    
+    def calc_y(self, d):
+      dist_ratio = float (d) / float (self.distance)
+      return (1.0-dist_ratio) * float(self.startpoint.y) + (dist_ratio) * float(self.endpoint.y)
+
+The Links class is accompanied with the following attributes:
+
+* distance: The length of the link in kilometers.
+* endpoint: A reference to the Location to which this Link will lead.
+* numAgents: Our all-familiar tracking variable that keeps count as to how many people are in transit on this link.
+
+It also has two functions, `calc_x()` and `calc_y()`, which calculate the GPS x and y coordinate for agents residing on a link (those that are travelling).
+
 
 Defining a single person
 ============================================
@@ -91,11 +158,19 @@ I gave the Person class a simple constructor (see the _init_() function), which 
 * travelling: whether the Person is currently in transit, or stationary at one of the locations.
 * distance_travelled_on_link: if currently in transit, how many kilometres the person has travelled in this journey.
 
+.. sidebar:: Want to try it out?
+
+    To test whether what you wrote works, make a second file, named `test.py` in the same directory. In that file, put the following:
+    ::
+      import my-abm
+      l = new Location("a", x=0.2, y=2.0, movechance=0.0)
+      p = new Person(l)
+      print("The name of the location where a person resides", p.l.name)
+
 Rules for movement and state changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now each Person will have to make decisions at different moment. In this code,
-we model two types of decisions:
+Great! You've established the Locations in your simulation, as well as the Links interconnecting them, as well as Persons that can reside either in Locations or Links. Now each Person will have to make decisions at different moments to determine her/his behavior. In this code we model two types of decisions:
 
 1. Whether the Person wishes to move from its current location to another one.
 2. If 1 is the case: which route the Person will choose from a set of routes.
@@ -184,76 +259,6 @@ destination we create one more function, namely `finish_travel()`
       self.y = self.location.y
 
 This function allows us to track agents who are on links, and have them progress gradually.
-
-
-Defining the Location Graph
-============================================
-
-Now Persons will reside at a given place, or Location. To define these places
-in a networked model, we create a Location object for each place:
-::
-  class Location:
-    def __init__(self, name, x=0.0, y=0.0, movechance=0.001):
-      self.name = name
-      self.x = x
-      self.y = y
-      self.movechance = movechance
-      self.links = []
-      self.numAgents = 0
-
-
-The Location class, too, has a number of simple parameters. These represent essential characteristics for individual locations:
-
-* name: the name of the Location.
-* x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.
-* y: GPS y-coordinate.
-* movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0.0), certain to move out immediately (1.0) or will there be a mixture (0.0<`movechance`<1.0).
-* links: An array containing routes/links/paths to other Locations.
-* numAgents: A tracking variable that keeps count as to how many people are present at this Location.
-
-.. sidebar:: Want to try it out?
-
-    To test whether what you wrote works, make a second file, named `test.py` in the same directory. In that file, put the following:
-    ::
-      import my-abm
-      l = new Location("a", x=0.2, y=2.0, movechance=0.0)
-      p = new Person(l)
-      print(p.l.name)
-
-Defining the Links
-~~~~~~~~~~~~~~~~~~
-
-Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:
-::
-  class Link:
-    def __init__(self, startpoint, endpoint, distance):
-
-      # distance in km.
-      self.distance = float(distance)
-
-      # links for now always connect two endpoints
-      self.endpoint = endpoint
-      self.startpoint = startpoint
-
-      # number of agents that are in transit.
-      self.numAgents = 0   
-    
-    def calc_x(self, d):
-      dist_ratio = float (d) / float (self.distance)
-      return (1.0-dist_ratio) * float(self.startpoint.x) + (dist_ratio) * float(self.endpoint.x)
-    
-    def calc_y(self, d):
-      dist_ratio = float (d) / float (self.distance)
-      return (1.0-dist_ratio) * float(self.startpoint.y) + (dist_ratio) * float(self.endpoint.y)
-
-The Links class is accompanied with the following attributes:
-
-* distance: The length of the link in kilometers.
-* endpoint: A reference to the Location to which this Link will lead.
-* numAgents: Our all-familiar tracking variable that keeps count as to how many people are in transit on this link.
-
-It also has two functions, `calc_x()` and `calc_y()`, which calculate the GPS x and y coordinate for agents residing on a link (those that are travelling).
-
 
 From state to simulation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
