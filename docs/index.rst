@@ -4,6 +4,7 @@
    contain the root `toctree` directive.
 
 .. image:: derek_eos_square.png
+   :width: 50%
 
 Educational resources for students
 ===========================================================
@@ -16,7 +17,7 @@ Tutorials
    :maxdepth: 2
 
    python-abm
-
+   flee-par-couple
 
 Key FabSim3 reference documents
 -------------------------------
