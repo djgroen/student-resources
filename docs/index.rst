@@ -18,6 +18,12 @@ Tutorials
 
    task-management
    python-abm
+
+
+.. toctree::
+   :caption: Specialised tutorials
+   :maxdepth: 2
+
    flee-par-couple
 
 Key FabSim3 reference documents
