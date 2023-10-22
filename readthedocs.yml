@@ -12,14 +12,6 @@ build:
  #fail_on_warning: false
  
 # Optionally set the version of Python and requirements required to build your docs
-python:
-  install:
-    #- requirements: docs/mkdocs-requirements.txt
-    #- requirements: requirements.txt
-    # - method: setuptools
-    #   path: .
-
-
 
 
 # Optionally build your docs in additional formats such as PDF and ePub
