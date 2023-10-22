@@ -16,6 +16,7 @@ Tutorials
    :caption: Locally hosted tutorials
    :maxdepth: 2
 
+   task-management
    python-abm
    flee-par-couple
 
