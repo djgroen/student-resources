@@ -4,21 +4,19 @@ version: 2
 build:
   os: ubuntu-22.04
   apt_packages:
-    - openmpi-bin
-    - libopenmpi-dev
   tools:
-    python: "3.8"
+    python: "3.11"
 
 # Build documentation with MkDocs
-mkdocs:
- configuration: mkdocs.yml
- fail_on_warning: false
+#mkdocs:
+ #configuration: mkdocs.yml
+ #fail_on_warning: false
  
 # Optionally set the version of Python and requirements required to build your docs
 python:
   install:
-    - requirements: docs/mkdocs-requirements.txt
-    - requirements: requirements.txt
+    #- requirements: docs/mkdocs-requirements.txt
+    #- requirements: requirements.txt
     # - method: setuptools
     #   path: .
 
