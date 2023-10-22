@@ -3,7 +3,6 @@ version: 2
 # https://github.com/readthedocs/readthedocs.org/pull/8065
 build:
   os: ubuntu-22.04
-  apt_packages:
   tools:
     python: "3.11"
 
