@@ -11,10 +11,10 @@ First, make sure your tasks are SMART:
 
 1. Specific: be clear for instance about what needs to be done and in what way.
 2. Measurable: be clear what output needs to be generated for the task to be completed. 
-2. Measurable (2): make clear what will measure the quality of the task output, so that the task quality can be evaluated later.
-3. Assignable: one person should be in charge of each task.
-4. Realistic: a good task can be completed in less than a week.
-5. Time-related: tasks should either have a deadline or be a *backgroun*, i.e. to pick up if nothing important is needed.
+3. Measurable (2): make clear what will measure the quality of the task output, so that the task quality can be evaluated later.
+4. Assignable: one person should be in charge of each task.
+5. Realistic: a good task can be completed in less than a week.
+6. Time-related: tasks should either have a deadline or be a *backgroun*, i.e. to pick up if nothing important is needed.
 
 Second, give tasks a priority:
 
@@ -34,6 +34,16 @@ Third, tasks have a status:
 6. Descoped: the task is no longer relevant, or the deadline for it has passed without it having been done.
 
 Fourth, tasks have a size. It is not always easy to estimate a size, but the best tasks can be completed within a workday, and ideally all tasks should be broken down such that they can be done within 3 working days at most (i.e. a working week minus admin/teaching overheads).
+
+Which tasks to discuss in meetings
+----------------------------------
+
+Whether a task should be discussed in a meeting, or affect meeting schedules, depends on its priority:
+
+1. Tasks with a priority of Low or Background are normally not worth discussing in meetings, because one-on-one communication is more effort efficient.
+2. Tasks with a priority of High or Medium are normally worth discussing in meetings. Consider scheduling tasks with High priority to be discussed first.
+3. Tasks with a priority of Critical should always be covered in meetings. If the meeting interferes with the completion of a Critical task (e.g. due to a tight deadline), then the meeting should be cancelled.
+
 
 Dealing with complications and delays
 -------------------------------------
