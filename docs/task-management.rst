@@ -58,6 +58,15 @@ Here are a few ways you can deal with complications and delays:
 5. Deprioritize the task and move the deadline: sometimes a complication is so serious that the main task becomes less attractive to finish altogether. Lower priority and extend deadline.
 6. Descope the task: if a complication renders a task unrealistic or irrelevant, then simply descope it of course :).
 
+Signs something is wrong with your task list
+--------------------------------------------------
+
+In my opinion a task list normally has roughly between 5 and 20 tasks (assuming full time work).
+
+* If you have 4 or fewer tasks, then it becomes particularly difficult to prioritize the tasks and more likely you have significant work that you are not including officially in your task list (and therefore not officially acknowledge to yourself as doing).
+* If you have more than ~20 tasks, then choosing tasks can become more effort-intensive and the task management in general may start to impose too much overhead. It could be that you're simply taking on too much work, or that your individual tasks are too fine-grained.
+* Tasks with critical priority should be extremely rare, and ideally there is at least one task with a background priority.
+
 Signs something is wrong with your task definition
 --------------------------------------------------
 
