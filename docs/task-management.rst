@@ -78,7 +78,7 @@ Sometimes this is clear only long after you defined a task. But if these signs s
 4. A task seems intimidating: you have a sense of dread when you think of having to do it.
 5. Many completed tasks are labelled as not completed in your task list.
 
-In the case of (2), you should ask for clarifications on the task. In cases (1,3,4), it may be best to split the task into 2, 3, 4 or even more sub-tasks. In the case of (5) you should define slightly fewer and bigger tasks going forward.
+In the case of (2), I think you should ask for clarifications on the task. In cases (1,3,4), it may be best to split the task into 2, 3, 4 or even more sub-tasks. In the case of (5) you should define slightly fewer and bigger tasks going forward.
 
 Task management platforms
 -------------------------
