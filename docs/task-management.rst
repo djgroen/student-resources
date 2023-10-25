@@ -1,9 +1,9 @@
 *************************************************************
 Basics of Task Management
 *************************************************************
-Written by Derek Groen
+*Written by Derek Groen*
 
-This document represents an opinion, and should not be viewed as an absolute truth. As a thinking individual, I recommend you take this as loose inspiration, and salvage from it what you think is useful.
+This document represents an opinion, and should not be viewed as an absolute truth. As a thinking individual, you can take this as loose inspiration, and salvage from it what you think is useful.
 
 Defining tasks
 --------------
