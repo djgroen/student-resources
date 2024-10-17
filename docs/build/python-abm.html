@@ -1,0 +1,827 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Advanced use of the Flee code." href="flee-par-couple.html" /><link rel="prev" title="Basics of Task Management" href="task-management.html" />
+
+    <!-- Generated with Sphinx 8.0.2 and Furo 2024.08.06 -->
+        <title>Designing and prototyping your own simulation with Python3. - Student Resources Living Release documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Student Resources Living Release documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Student Resources Living Release documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Locally hosted tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="task-management.html">Basics of Task Management</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Designing and prototyping your own simulation with Python3.</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Specialised tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flee-par-couple.html">Advanced use of the Flee code.</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/python-abm.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="designing-and-prototyping-your-own-simulation-with-python3">
+<h1>Designing and prototyping your own simulation with Python3.<a class="headerlink" href="#designing-and-prototyping-your-own-simulation-with-python3" title="Link to this heading">¶</a></h1>
+<p>Written by Derek Groen (<a class="reference external" href="mailto:Derek&#46;Groen&#37;&#52;&#48;brunel&#46;ac&#46;uk">Derek<span>&#46;</span>Groen<span>&#64;</span>brunel<span>&#46;</span>ac<span>&#46;</span>uk</a>), with help from Subam Bista, Diana Suleimenova and Gebremariam Assres.</p>
+<p>In this tutorial, you will learn how to write a basic agent-based simulation application. The example we use is a simulation that attempts to predict the movement of persons escaping dangerous areas and seeking safety. The principles we cover in this tutorial have been used for a wide range of simulations, for instance to model the escape of people from armed conflicts (<a class="reference external" href="https://www.nature.com/articles/s41598-017-13828-9">https://www.nature.com/articles/s41598-017-13828-9</a>).</p>
+<p>The underlying technique we introduce here is more widely known as <em>agent-based modelling</em>, or ABM.</p>
+<p>In this tutorial we will cover the following aspects:</p>
+<ul class="simple">
+<li><p>What is agent-based modelling in general.</p></li>
+<li><p>Creating a simple agent-based model with Python3 and using several of the key concepts that we used in the Flee agent-based modelling code.</p></li>
+<li><p>Observing uncertainty in your simulation results.</p></li>
+<li><p>Basic steps towards designing and prototyping your own model.</p></li>
+</ul>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h2>
+<p>To do this tutorial, you need a working Python3 installation. Numpy and pyplot are useful, but optional.</p>
+<section id="introduction-what-is-agent-based-modelling">
+<h3>Introduction: What is agent-based modelling?<a class="headerlink" href="#introduction-what-is-agent-based-modelling" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>agent-based model (ABM)</dt><dd><p>a computational technique to model the actions and interactions of autonomous agents, with a view to assessing their effects on the system as a whole. Agents may represent individuals, groups, or abstract entities.</p>
+</dd>
+</dl>
+<p>In this tutorial we assume that we are modelling of people moving from one place to another. However, ABM can also be used to model other movements, e.g. of objects such as cars, of animals, of cells, or even transactions or e-mails. The elements may differ on the type of model you wish to create.</p>
+<p>In the case of our people movement simulations, we work with three basic elements:</p>
+<ul class="simple">
+<li><p>The persons themselves (<cite>Person</cite> class).</p></li>
+<li><p>The locations where the persons reside (<cite>Location</cite> class).</p></li>
+<li><p>And possibly the paths (or routes) that interconnect the locations (<cite>Link</cite> class).</p></li>
+</ul>
+<p>In its simplest form, this agent-based model features people that reside at a
+given location, and that move from one location to another as the time in the
+simulation progresses.</p>
+<p><em>Network-based versus geographically pixelated</em></p>
+<p>In general there are two widespread basic approaches to ABM. One is network-based, where each location is an agent, and the location agents are interlinked using path agents. A second approach is geographically pixelated, where a region is subdivided into square areas, and the location of agents is indicated by the respective coordinates of the corresponding square areas. It is possible to use a network-based model to approximate a geographically pixelated model, by placing all locations on Carthesian coordinates.</p>
+</section>
+<section id="the-simulation-code">
+<h3>The simulation code<a class="headerlink" href="#the-simulation-code" title="Link to this heading">¶</a></h3>
+<p>What follows is a step-by-step explanation how you can use Python3 to build an agent-based simulation code. The code works as is, but as part of this tutorial you will be given the opportunity to change some of its features, so that you can make it suit your personal needs.</p>
+<p>To start off, please make a new Python file named <strong>my-abm.py</strong>. Unless specified otherwise, please place any Python fragments following in this tutorial at the _bottom_ of this file.</p>
+<p>To start off, we will need to import one library, so that we can use the randomizer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+<p>In this tutorial we use very few dependencies for the main simulation code, but the random library is an essential one, as agent-based simulations strongly rely on randomizers. We do require a few more dependencies for visualizing results, namely matplotlib, pandas, and ffmpeg for storing animations.</p>
+</section>
+<section id="defining-the-location-graph">
+<h3>Defining the Location Graph<a class="headerlink" href="#defining-the-location-graph" title="Link to this heading">¶</a></h3>
+<p>Now any Persons in the simulation will reside at a given place, or Location. To define these places
+in a networked model, we create a Location object for each place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Location</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">movechance</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">movechance</span> <span class="o">=</span> <span class="n">movechance</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The Location class, has a number of simple parameters. These represent essential characteristics for individual locations:</p>
+<ul class="simple">
+<li><p>name: the name of the Location.</p></li>
+<li><p>x: GPS x-coordinate, useful for placing on a map and for calculating distances as the bird flies.</p></li>
+<li><p>y: GPS y-coordinate.</p></li>
+<li><p>movechance: An indicator denoting the safety level of this location. Are people certain to stay put (0.0), certain to move out immediately (1.0) or will there be a mixture (0.0&lt;<a href="#id1"><span class="problematic" id="id2">`</span></a>movechance`&lt;1.0).</p></li>
+<li><p>links: An array containing routes/links/paths to other Locations.</p></li>
+<li><p>numAgents: A tracking variable that keeps count as to how many people are present at this Location.</p></li>
+</ul>
+<aside class="sidebar">
+<p class="sidebar-title">Want to try it out?</p>
+<p>To test whether what you wrote works, make a second file, named <cite>test.py</cite> in the same directory. In that file, put the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">my</span><span class="o">-</span><span class="n">abm</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Location</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">movechance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</aside>
+</section>
+</section>
+<section id="defining-the-links">
+<h2>Defining the Links<a class="headerlink" href="#defining-the-links" title="Link to this heading">¶</a></h2>
+<p>Another ingredient of our simulations is to interconnect our locations. In our network-based model it is not immediately clear that given Locations are adjacent. To define adjacencies, we create Link objects which interconnect a set of two locations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Link</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startpoint</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+
+    <span class="c1"># distance in km.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+
+    <span class="c1"># links for now always connect two endpoints</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">startpoint</span> <span class="o">=</span> <span class="n">startpoint</span>
+
+    <span class="c1"># number of agents that are in transit.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="k">def</span> <span class="nf">calc_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">dist_ratio</span> <span class="o">=</span> <span class="nb">float</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">dist_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">startpoint</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dist_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">calc_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">dist_ratio</span> <span class="o">=</span> <span class="nb">float</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">dist_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">startpoint</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dist_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Links class is accompanied with the following attributes:</p>
+<ul class="simple">
+<li><p>distance: The length of the link in kilometers.</p></li>
+<li><p>endpoint: A reference to the Location to which this Link will lead.</p></li>
+<li><p>numAgents: Our all-familiar tracking variable that keeps count as to how many people are in transit on this link.</p></li>
+</ul>
+<p>It also has two functions, <cite>calc_x()</cite> and <cite>calc_y()</cite>, which calculate the GPS x and y coordinate for agents residing on a link (those that are travelling).</p>
+<section id="defining-a-single-person">
+<h3>Defining a single person<a class="headerlink" href="#defining-a-single-person" title="Link to this heading">¶</a></h3>
+<p>We first start by defining a simple class which describes a person. Let’s name
+this class “Person”, so that we could choose to reuse the class for other
+simulation purposes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">ill</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">injured</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">35</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Set to true when an agent resides on a link.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>I gave the Person class a simple constructor (see the _init_() function), which sets a number of parameters specific to the class. You can define any parameter you like, but I opted for the following (semi-arbitrary) set:</p>
+<ul class="simple">
+<li><p>healthy: which indicates whether a Person is generally healthy or ill/weakened.</p></li>
+<li><p>injured: which indicates whether a Person is physically injured or not.</p></li>
+<li><p>x,y: x and y GPS coordinate, to be updated as the simulation progresses.</p></li>
+<li><p>age: age in years.</p></li>
+<li><p>location: a reference to the location where the Person currently resides.</p></li>
+<li><p>travelling: whether the Person is currently in transit, or stationary at one of the locations.</p></li>
+<li><p>distance_travelled_on_link: if currently in transit, how many kilometres the person has travelled in this journey.</p></li>
+</ul>
+<aside class="sidebar">
+<p class="sidebar-title">Want to try it out?</p>
+<p>To test whether what you wrote works, make a second file, named <cite>test.py</cite> in the same directory. In that file, put the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">my</span><span class="o">-</span><span class="n">abm</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Location</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">movechance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The name of the location where a person resides&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</aside>
+</section>
+</section>
+<section id="rules-for-movement-and-state-changes">
+<h2>Rules for movement and state changes<a class="headerlink" href="#rules-for-movement-and-state-changes" title="Link to this heading">¶</a></h2>
+<p>Great! You’ve established the Locations in your simulation, as well as the Links interconnecting them, as well as Persons that can reside either in Locations or Links. Now each Person will have to make decisions at different moments to determine her/his behavior. In this code we model two types of decisions:</p>
+<ol class="arabic simple">
+<li><p>Whether the Person wishes to move from its current location to another one.</p></li>
+<li><p>If 1 is the case: which route the Person will choose from a set of routes.</p></li>
+</ol>
+<p>We will start with decision 2, which is at the lowest level, and create a
+simple function that picks a favourite route amongst a list of routes. To do
+this, we created a simple weighted choice algorithm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">selectRoute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">total_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">links</span><span class="p">)):</span>
+    <span class="n">total_score</span> <span class="o">+=</span> <span class="mf">40000.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">10.0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+
+  <span class="n">selected_value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">total_score</span>
+
+  <span class="n">checked_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">links</span><span class="p">)):</span>
+    <span class="n">checked_score</span> <span class="o">+=</span> <span class="mf">40000.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">10.0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">selected_value</span> <span class="o">&lt;</span> <span class="n">checked_score</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">i</span>
+</pre></div>
+</div>
+<p>Here, each option has a weight equal to 40000 (the approximate circumference of
+the planet in km) divided by (10 + [distance to the endpoint of the route in
+km]).</p>
+<p>Because the function is rather simple, I included a full implementation.
+However, the exact same functionality can also be accomplished using
+<cite>numpy.random.choice()</cite>, if you have access to the numpy library.</p>
+<p><cite>selectRoute()</cite> is embedded in a more general function (<cite>evolve()</cite>), which evolves
+the position of a Person over a single timestep in the simulation. This
+function essentially captures the mechanics in making decision 1, and relies on
+the aforementioned <cite>selectRoute()</cite> to resolve decision 2 when necessary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+  <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span><span class="p">:</span>
+    <span class="n">movechance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">movechance</span>
+    <span class="n">outcome</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">outcome</span> <span class="o">&lt;</span> <span class="n">movechance</span><span class="p">:</span>
+      <span class="c1"># determine here which route to take?</span>
+      <span class="n">chosenRoute</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectRoute</span><span class="p">()</span>
+
+      <span class="c1"># update location to link endpoint</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">chosenRoute</span><span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Here the chance of a Person moving at all at a given time step is given by the
+movechance. This movechance is a static number for each Location, allowing us
+to set a high movechance for unsafe locations, and a lower movechance for safer
+locations.</p>
+<p><cite>evolve()</cite> places Persons on the Links. To ensure that these Persons reach there
+destination we create one more function, namely <cite>finish_travel()</cite></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">finish_travel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="c1"># if the person resides on a link between locations, it is &quot;travelling&quot;</span>
+  <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span><span class="p">:</span>
+
+    <span class="c1"># increment the distance covered by 10 kilometers.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span> <span class="o">+=</span> <span class="mi">10</span>
+
+    <span class="c1"># get the length of the current route (link).</span>
+    <span class="n">link_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">distance</span>
+
+    <span class="c1"># If the distance travelled is longer than the length of the link, we arrive at our destination.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span> <span class="o">&gt;</span> <span class="n">link_length</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">endpoint</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">numAgents</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span> <span class="o">=</span> <span class="kc">False</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="c1"># Update the X and Y coordinates of each agent</span>
+  <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">travelling</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">calc_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">calc_y</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distance_travelled_on_link</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>This function allows us to track agents who are on links, and have them progress gradually.</p>
+</section>
+<section id="from-state-to-simulation">
+<h2>From state to simulation<a class="headerlink" href="#from-state-to-simulation" title="Link to this heading">¶</a></h2>
+<p>We now have people, locations, and links that represent connections between
+these locations. These are essential components for an agent-based model in
+this context. It’s easy to think up many other possible components (e.g.,
+conflict events, other types of agents, more parameters regarding age, religion
+etc.), but most of these are not essential for the simulation in its most basic
+form. However, what is essential is to be able to model a period of time, i.e.
+turning out frozen state into a simulation.</p>
+<p>To accomplish this, we create an Ecosystem class, which stores the full state
+(Locations, Links and Persons), and which is able to evolve them in time. We
+define the class as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ecosystem</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">locationNames</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">agents</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The Ecosystem class has the following attributes:</p>
+<ul class="simple">
+<li><p>locations: Contains all the locations in our system.</p></li>
+<li><p>locationNames: A shorthand list of the names of the respective locations in our system, to make it easier to write diagnostic information.</p></li>
+<li><p>agents: A list of all the agents in our system.</p></li>
+<li><p>time: Basically a clock, which contains the number of time steps that have been taken.</p></li>
+</ul>
+<p>Next, we need a member function that adds locations to the Ecosystem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">addLocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="n">movechance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+  <span class="n">l</span> <span class="o">=</span> <span class="n">Location</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">movechance</span><span class="p">)</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">locationNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">l</span>
+</pre></div>
+</div>
+<p>…a function that adds Agents to the Ecosystem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">addAgent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="n">location</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>…and a function that adds Links to the Ecosystem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linkUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint1</span><span class="p">,</span> <span class="n">endpoint2</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; Creates a link between two endpoint locations</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">endpoint1_index</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">endpoint2_index</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locationNames</span><span class="p">)):</span>
+    <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locationNames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">endpoint1</span><span class="p">):</span>
+      <span class="n">endpoint1_index</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locationNames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">endpoint2</span><span class="p">):</span>
+      <span class="n">endpoint2_index</span> <span class="o">=</span> <span class="n">i</span>
+
+  <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint1_index</span><span class="p">]</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint1_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint2_index</span><span class="p">],</span> <span class="n">distance</span><span class="p">)</span> <span class="p">)</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint2_index</span><span class="p">]</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint2_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">endpoint1_index</span><span class="p">],</span> <span class="n">distance</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Crucially, we want to evolve the system in time. This is actually done using the following function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">doTimeStep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="c1">#update agent locations</span>
+  <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+
+  <span class="c1">#update agent travel on links</span>
+  <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">finish_travel</span><span class="p">()</span>
+
+  <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Lastly, we add two functions to aid us in writing out some results.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">numAgents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">printLocationInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;locations.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+  <span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;#name,x,y</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">:</span>
+    <span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+  <span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">printInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time: &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="s2">&quot;, # of agents: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">locations</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">numAgents</span><span class="p">)</span>
+
+  <span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;agents.</span><span class="si">%s</span><span class="s2">.csv&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+  <span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;#id,x,y</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="nb">id</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">):</span>
+    <span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+  <span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="creating-and-running-an-agent-based-simulation">
+<h3>Creating and running an Agent-based Simulation<a class="headerlink" href="#creating-and-running-an-agent-based-simulation" title="Link to this heading">¶</a></h3>
+<p>We have now created all the essential classes to perform an agent-based
+simulation. Here we describe how you can construct and run a simple ABM
+simulation. We start off by creating an Ecosystem, and creating a location graph with six locations in it.
+The location graph will roughly look like this:</p>
+<img alt="_images/locations.png" src="_images/locations.png" />
+<p>And the source code required to add the locations for this involves:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A first ABM implementation&quot;</span><span class="p">)</span>
+
+  <span class="n">e</span> <span class="o">=</span> <span class="n">Ecosystem</span><span class="p">()</span>
+
+  <span class="n">l1</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Source1&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">l2</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Source2&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+  <span class="n">l3</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Transit1&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">l4</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Transit2&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+  <span class="n">l5</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Sink1&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">l6</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">addLocation</span><span class="p">(</span><span class="s2">&quot;Sink2&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we establish two paths, each of which connects the source location to one
+of the two sink locations. As a test, we specify one of the paths to have a
+length of 10 kilometers, and one to have a length of 5 kilometers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Source1&quot;</span><span class="p">,</span><span class="s2">&quot;Transit1&quot;</span><span class="p">,</span><span class="s2">&quot;100.0&quot;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Source1&quot;</span><span class="p">,</span><span class="s2">&quot;Transit2&quot;</span><span class="p">,</span><span class="s2">&quot;50.0&quot;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Source2&quot;</span><span class="p">,</span><span class="s2">&quot;Transit1&quot;</span><span class="p">,</span><span class="s2">&quot;100.0&quot;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Source2&quot;</span><span class="p">,</span><span class="s2">&quot;Transit2&quot;</span><span class="p">,</span><span class="s2">&quot;50.0&quot;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Transit1&quot;</span><span class="p">,</span><span class="s2">&quot;Sink1&quot;</span><span class="p">,</span><span class="s2">&quot;200.0&quot;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">linkUp</span><span class="p">(</span><span class="s2">&quot;Transit2&quot;</span><span class="p">,</span><span class="s2">&quot;Sink2&quot;</span><span class="p">,</span><span class="s2">&quot;200.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With the location and links in place, we can now insert a hundred agents in the
+source location l1. To do that, we use the addAgent() function a hundred times.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
+  <span class="n">e</span><span class="o">.</span><span class="n">addAgent</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">l1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With all the agents in place, we can now proceed to run the simulation. We first
+print all the locations to a CSV file for later reference. Next, we run
+the simulation for a duration of 10 time steps, and we print basic diagnostic
+information after each time step:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">printLocationInfo</span><span class="p">()</span>
+
+<span class="n">duration</span><span class="o">=</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">duration</span><span class="p">):</span>
+  <span class="n">e</span><span class="o">.</span><span class="n">doTimeStep</span><span class="p">()</span>
+  <span class="n">e</span><span class="o">.</span><span class="n">printInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>…and with that all in place, you have just established your first working ABM
+model!</p>
+<p>You can run your simulation using:
+<cite>python3 &lt;name_of_the_python_script_in_which_you_stored_your_code&gt;</cite></p>
+<p>If it runs successfully, it will create 11 CSV files in the directory that you launch it from. These files include <cite>locations.csv</cite> as well as 10 agent log files, named <cite>agents.1.csv</cite> all the way to <cite>agents.10.csv</cite>.</p>
+</section>
+<section id="optional-visualizing-your-results">
+<h3>Optional: Visualizing your results<a class="headerlink" href="#optional-visualizing-your-results" title="Link to this heading">¶</a></h3>
+<p>In this section we will try to create a visualization of your simulation, so you can explore how the agents move around the location graph.</p>
+</section>
+</section>
+<section id="installing-dependencies">
+<h2>installing dependencies<a class="headerlink" href="#installing-dependencies" title="Link to this heading">¶</a></h2>
+<p>For this section, you will need the Python3 matplotlib and pandas packages. In addition, to save the visualizations, you will need to install imagemagick. One way to install these on Linux platforms is by using the following commands:</p>
+<p><cite>pip3 install pandas</cite>, <cite>pip3 install matplotlib</cite> and <cite>sudo apt install imagemagick</cite>.</p>
+</section>
+<section id="main-visualization">
+<h2>Main visualization<a class="headerlink" href="#main-visualization" title="Link to this heading">¶</a></h2>
+<p>To show an animation of your results, you can paste the following code into a file named <cite>make_animation.py</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+
+<span class="k">def</span> <span class="nf">plot_location</span><span class="p">():</span>
+  <span class="c1"># sample data in data directory</span>
+  <span class="n">location_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/locations.csv&#39;</span> <span class="o">%</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;#name&quot;</span><span class="p">)</span>
+  <span class="n">city_names</span> <span class="o">=</span> <span class="n">location_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">location_df</span><span class="o">.</span><span class="n">x</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">location_df</span><span class="o">.</span><span class="n">y</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+  <span class="c1"># label the points with the city names</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">city_names</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;12&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">read_csv_to_df</span><span class="p">():</span>
+  <span class="c1"># Reads data from data directory</span>
+  <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="n">num_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/agents.*.csv&#39;</span> <span class="o">%</span> <span class="n">data_path</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_files</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/agents.</span><span class="si">%s</span><span class="s1">.csv&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;#id&#39;</span><span class="p">)</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
+    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">df_list</span>
+
+
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">scat</span><span class="p">):</span>
+  <span class="n">scat</span><span class="o">.</span><span class="n">set_offsets</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">scat</span>
+
+
+<span class="k">def</span> <span class="nf">save_animation</span><span class="p">(</span><span class="n">anim</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Requires your host system to have the &quot;ffmpeg&quot; pacakage installed</span>
+<span class="sd">  For mac use home brew: brew install ffmpeg</span>
+<span class="sd">  this will install a lot of other dependenies required as well</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Assumes output directory exists</span>
+  <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/agent_location.gif&#39;</span> <span class="o">%</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s1">&#39;imagemagick&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Animation saved in output directory&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">data_path</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+  <span class="c1">#ax.set(xlim=(-10, 110), ylim=(-10, 110))</span>
+
+  <span class="n">num_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/agents*.csv&#39;</span> <span class="o">%</span> <span class="n">data_path</span><span class="p">))</span>
+  <span class="n">scat</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([],</span> <span class="p">[])</span>
+  <span class="n">plot_location</span><span class="p">()</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# of frames: &quot;</span><span class="p">,</span><span class="n">num_files</span><span class="p">)</span>
+
+  <span class="n">dataframe_list</span> <span class="o">=</span> <span class="n">read_csv_to_df</span><span class="p">()</span>
+  <span class="c1"># time between frames can be changed by adjusting the interval param which is in milliseconds</span>
+  <span class="n">anim</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">num_files</span><span class="p">),</span> <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="n">dataframe_list</span><span class="p">,</span> <span class="n">scat</span><span class="p">))</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+  <span class="c1"># shows the output on screen</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="c1"># uncomment line below to save as mp4 video file</span>
+  <span class="c1"># save_animation(anim)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once you have done so, you can then create an animation on your screen using the command:
+<cite>python3 make_animation.py &lt;name_of_directory_with_output_files&gt;</cite></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="flee-par-couple.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Advanced use of the Flee code.</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="task-management.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Basics of Task Management</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2019, Derek Groen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Designing and prototyping your own simulation with Python3.</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li><a class="reference internal" href="#introduction-what-is-agent-based-modelling">Introduction: What is agent-based modelling?</a></li>
+<li><a class="reference internal" href="#the-simulation-code">The simulation code</a></li>
+<li><a class="reference internal" href="#defining-the-location-graph">Defining the Location Graph</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#defining-the-links">Defining the Links</a><ul>
+<li><a class="reference internal" href="#defining-a-single-person">Defining a single person</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rules-for-movement-and-state-changes">Rules for movement and state changes</a></li>
+<li><a class="reference internal" href="#from-state-to-simulation">From state to simulation</a><ul>
+<li><a class="reference internal" href="#creating-and-running-an-agent-based-simulation">Creating and running an Agent-based Simulation</a></li>
+<li><a class="reference internal" href="#optional-visualizing-your-results">Optional: Visualizing your results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-dependencies">installing dependencies</a></li>
+<li><a class="reference internal" href="#main-visualization">Main visualization</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=c6a76996"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>

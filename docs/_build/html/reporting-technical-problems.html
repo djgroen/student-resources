@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Engineering Basics and Good Practices &mdash; Student Resources Living Release documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c6a76996"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced use of the Flee code." href="flee-par-couple.html" />
+    <link rel="prev" title="Designing and prototyping your own simulation with Python3." href="python-abm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Student Resources
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essential Learning Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="task-management.html">Basics of Task Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cs-level2-dissertation-writing.html">Tips for Dissertation Writing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-abm.html">Designing and prototyping your own simulation with Python3.</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Engineering Basics and Good Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-report-technical-problems">How to report technical problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-unit-tests">Writing Unit Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-unit-test">What is a Unit Test?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices-for-writing-unit-tests">Best Practices for Writing Unit Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keep-tests-focused">1. Keep Tests Focused</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-descriptive-names">2. Use Descriptive Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-custom-print-functions-for-test-results">3. Write Custom Print Functions for Test Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-custom-print-function">Example: Custom Print Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#document-your-findings">4. Document Your Findings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Specialised tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flee-par-couple.html">Advanced use of the Flee code.</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Student Resources</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Software Engineering Basics and Good Practices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/reporting-technical-problems.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-engineering-basics-and-good-practices">
+<h1>Software Engineering Basics and Good Practices<a class="headerlink" href="#software-engineering-basics-and-good-practices" title="Link to this heading"></a></h1>
+<section id="how-to-report-technical-problems">
+<h2>How to report technical problems<a class="headerlink" href="#how-to-report-technical-problems" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Before reporting a problem, always make sure that you have examined the existing documentation. Check the installation manuals and user guides of the relevant tool(s), and also check this repository for helpful information first.</p></li>
+<li><p>Always write specifically what you are trying to accomplish, and what you are doing to accomplish it.</p></li>
+<li><p>Copy/paste a direct screenshot, command list or code fragment of the stuff you are doing.</p></li>
+<li><p>Copy/paste error output <em>directly</em>, or take a screenshot if that is not possible.</p></li>
+<li><p>Raise technical problems in the #technicalissues channel on the 42Brunel slack, raise them as “Issues” on GitHub only if you are 100% certain that it’s a code issue.</p></li>
+</ul>
+</section>
+<section id="writing-unit-tests">
+<h2>Writing Unit Tests<a class="headerlink" href="#writing-unit-tests" title="Link to this heading"></a></h2>
+<p>Unit tests are a crucial aspect of software development, enabling developers to verify that individual components of their code function correctly. This guide provides an overview of best practices for writing unit tests, along with insights on using multiple assertions effectively.</p>
+<hr class="docutils" />
+<section id="what-is-a-unit-test">
+<h3>What is a Unit Test?<a class="headerlink" href="#what-is-a-unit-test" title="Link to this heading"></a></h3>
+<p>A unit test is a piece of code that tests a specific function or method in isolation from the rest of the application. The primary goal is to validate that each unit of the software performs as expected, which helps catch bugs early in the development process.</p>
+</section>
+<hr class="docutils" />
+<section id="best-practices-for-writing-unit-tests">
+<h3>Best Practices for Writing Unit Tests<a class="headerlink" href="#best-practices-for-writing-unit-tests" title="Link to this heading"></a></h3>
+<section id="keep-tests-focused">
+<h4>1. Keep Tests Focused<a class="headerlink" href="#keep-tests-focused" title="Link to this heading"></a></h4>
+<p>While it’s possible to have multiple assertions within a single test, consider the following:</p>
+<ul class="simple">
+<li><p><strong>Clarity on Failures</strong>: If a test fails, it should be clear to the user what went wrong. Avoid combining multiple assertions that might obscure the cause of the failure.</p></li>
+<li><p><strong>Simplicity</strong>: Strive for simplicity in your tests to make them easier to understand and maintain. This will benefit both you and other developers who may work with your code.</p></li>
+</ul>
+</section>
+<section id="use-descriptive-names">
+<h4>2. Use Descriptive Names<a class="headerlink" href="#use-descriptive-names" title="Link to this heading"></a></h4>
+<p>Make sure your test function names clearly indicate what is being tested. This helps others understand the purpose of the test without needing to read the implementation details.</p>
+</section>
+<section id="write-custom-print-functions-for-test-results">
+<h4>3. Write Custom Print Functions for Test Results<a class="headerlink" href="#write-custom-print-functions-for-test-results" title="Link to this heading"></a></h4>
+<p>To simplify the process of reporting test outcomes, you can create a custom print function. This function can provide clear output and allow for easy adjustments to verbosity across all your tests.</p>
+</section>
+<section id="example-custom-print-function">
+<h4>Example: Custom Print Function<a class="headerlink" href="#example-custom-print-function" title="Link to this heading"></a></h4>
+<p>Here’s a simple implementation of a custom print function in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pr_unittest</span><span class="p">(</span><span class="n">test_name</span><span class="p">,</span> <span class="n">test_outcome_bool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print the outcome of a unit test.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        test_name (str): The name of the test.</span>
+<span class="sd">        test_outcome_bool (bool): The result of the test (True for pass, False for fail).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">test_outcome_bool</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test &#39;</span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&#39; failed.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># You can choose to suppress output for passing tests if desired.</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="document-your-findings">
+<h4>4. Document Your Findings<a class="headerlink" href="#document-your-findings" title="Link to this heading"></a></h4>
+<p>Documenting your unit testing results is essential for tracking test outcomes and ensuring that all tests are accounted for. A well-structured documentation approach can help you identify which tests passed, which failed, and any related issues.</p>
+<section id="example-documentation-table">
+<h5>Example Documentation Table<a class="headerlink" href="#example-documentation-table" title="Link to this heading"></a></h5>
+<p>Consider using a table to record your findings. Below is a simple template you can follow:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Test Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Outcome</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sum Test</p></td>
+<td><p>Tests the sum function with 2+3</p></td>
+<td><p>Passed</p></td>
+<td><p>Function works as expected.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Product Test</p></td>
+<td><p>Tests the product function with 2*3</p></td>
+<td><p>Passed</p></td>
+<td><p>Function works as expected.</p></td>
+</tr>
+<tr class="row-even"><td><p>Edge Case Test</p></td>
+<td><p>Tests sum with negative numbers</p></td>
+<td><p>Failed</p></td>
+<td><p>Returns incorrect result; need to fix.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-components-of-the-table">
+<h5>Key Components of the Table:<a class="headerlink" href="#key-components-of-the-table" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><strong>Test Name</strong>: The name of the test function.</p></li>
+<li><p><strong>Description</strong>: A brief description of what the test is validating.</p></li>
+<li><p><strong>Outcome</strong>: Whether the test passed or failed.</p></li>
+<li><p><strong>Notes</strong>: Any additional comments about the test, such as reasons for failure or insights for improvements.</p></li>
+</ul>
+<p>This structured approach allows you to maintain clear records of your unit tests, making it easier to communicate findings to your team and prioritize future work based on test results.</p>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python-abm.html" class="btn btn-neutral float-left" title="Designing and prototyping your own simulation with Python3." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="flee-par-couple.html" class="btn btn-neutral float-right" title="Advanced use of the Flee code." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Derek Groen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

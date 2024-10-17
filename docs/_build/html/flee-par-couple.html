@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced use of the Flee code. &mdash; Student Resources Living Release documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c6a76996"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Designing and prototyping your own simulation with Python3." href="python-abm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Student Resources
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Locally hosted tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="task-management.html">Basics of Task Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python-abm.html">Designing and prototyping your own simulation with Python3.</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Specialised tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced use of the Flee code.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallel-flee">Parallel Flee</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-exercises">Simple exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#flee-a-microscale-model">Flee + a microscale model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flee-conflict-evolution">Flee + conflict evolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-optional-material">Advanced/Optional material</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Student Resources</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced use of the Flee code.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/flee-par-couple.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-use-of-the-flee-code">
+<h1>Advanced use of the Flee code.<a class="headerlink" href="#advanced-use-of-the-flee-code" title="Link to this heading"></a></h1>
+<p>Written by Derek Groen (<a class="reference external" href="mailto:Derek&#46;Groen&#37;&#52;&#48;brunel&#46;ac&#46;uk">Derek<span>&#46;</span>Groen<span>&#64;</span>brunel<span>&#46;</span>ac<span>&#46;</span>uk</a>), with help from Hamid Arabnejad, Diana Suleimenova and Gebremariam Assres.</p>
+<p>In this 30-minute tutorial, you will learn how to run the parallel version of Flee and how to run a coupled simulation. The content of this tutorial is derived from two conference papers, which are
+- Groen, D., 2018, June. Development of a multiscale simulation approach for forced migration. In International Conference on Computational Science (pp. 869-875). Springer, Cham.
+- Groen et al., Towards Modelling the Effect of Evolving Violence on Forced Migration, accepted for the Winter Simulation Conference 2019</p>
+<p>In this tutorial we will cover the following aspects:</p>
+<ul class="simple">
+<li><p>How to run the parallel Flee code using MPI.</p></li>
+<li><p>How to run a coupled simulation, with a microscale and macroscale migration model.</p></li>
+<li><p>How to run a coupled simulation, with Flee and a conflict evolution model</p></li>
+</ul>
+<p>We will focus primarily on just running basic versions of each type, so that you get a rough idea how these things would work on your local machine.</p>
+<p><strong>Although this tutorial is brief, it may still be difficult to get everything working in 30 minutes, so feel free to pick your favourite subsection and start with that.</strong></p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>To do this tutorial, you need a working Python3 installation, a working MPI installation, and the MPI4Py library. The numpy, pandas and matplotlib Python3 libraries are also recommended.</p>
+<p>You also need to have Flee installed (<a class="reference external" href="http://www.github.com/djgroen/flee-release">http://www.github.com/djgroen/flee-release</a>), as well as Flare (<a class="reference external" href="http://www.github.com/djgroen/flare-release">http://www.github.com/djgroen/flare-release</a>).</p>
+</section>
+<section id="parallel-flee">
+<h2>Parallel Flee<a class="headerlink" href="#parallel-flee" title="Link to this heading"></a></h2>
+<p>The simplest way to run the parallel code is to run it with the <cite>test_par.py</cite> testing script. To run a parallel version of Flee, please:</p>
+<ol class="arabic simple">
+<li><p>Make sure you’ve navigated the the Flee installation directory in the terminal.</p></li>
+<li><p>Type <cite>mpirun -np 2 python3 test_par.py 5</cite> to run Flee across 2 cores.</p></li>
+<li><p>To measure the execution time of your run, type <cite>time mpirun -np 2 python3 test_par.py 5</cite> to run Flee across 2 cores.</p></li>
+</ol>
+<section id="simple-exercises">
+<h3>Simple exercises<a class="headerlink" href="#simple-exercises" title="Link to this heading"></a></h3>
+<p>You can change <cite>-np 2</cite> to other values, such as <cite>-np 1</cite> to run on 1 core, or <cite>-np 4</cite> to run on 4 cores.</p>
+<ol class="arabic simple">
+<li><p>Use the aforementioned time command (see step 3 above) to time 10 runs of Flee using 2 cores. What’s the highest time you get? And the lowest?</p></li>
+<li><p>Use the aforementioned time command (see step 3 above) to a run of Flee using 1, 2 and 4 cores. Which core count gives you the lowest execution time?</p></li>
+<li><p>(advanced) Open the test_par.py script. Are you able to change the number of agents in the simulation  by editing this script? If so, how does changing that number affect your performance and scalability?</p></li>
+</ol>
+</section>
+</section>
+<section id="flee-a-microscale-model">
+<h2>Flee + a microscale model<a class="headerlink" href="#flee-a-microscale-model" title="Link to this heading"></a></h2>
+<p>To run a basic micro-macro coupled model, you can use the test script <cite>mscalecity.py</cite>. Because you are running two models, you’ll need to open two terminals for this part.</p>
+<ol class="arabic simple">
+<li><p>In the first terminal, go to your Flee installation directory, and type <cite>python3 mscalecity.py 0</cite>. This will start a microscale model of a small town.</p></li>
+<li><p>In the second terminal, go to your Flee installation directory, and type <cite>python3 mscalecity.py 1</cite>. This will start a macroscale model of a hypothetical country.</p></li>
+</ol>
+<p>Once you have typed the second command, you should see output being written to the screen for both simulations. You can write output to a CSV file, by appending <cite>&gt; out.csv</cite> to the command described in step 2.</p>
+</section>
+<section id="flee-conflict-evolution">
+<h2>Flee + conflict evolution<a class="headerlink" href="#flee-conflict-evolution" title="Link to this heading"></a></h2>
+<p>A detailed tutorial on running Flee with conflict evolution, using the FabSim3 automation toolkit, can be found here: <a class="reference external" href="https://github.com/djgroen/FabFlee/blob/master/doc/Tutorial.md">https://github.com/djgroen/FabFlee/blob/master/doc/Tutorial.md</a> . In this simplified tutorial, we simply explain the manual steps you can take to run Flare, transport the output data, and run a Flee simulation based on the obtained conflict evolution.</p>
+<p>To do this tutorial, you will need to download all the files in the following directory: <a class="reference external" href="https://github.com/djgroen/FabFlee/tree/master/config_files/mali">https://github.com/djgroen/FabFlee/tree/master/config_files/mali</a> . You also need to have the Flee and Flare codes installed.</p>
+<p>To run Flare easily, you should make a script called <cite>run_flare.py</cite>, which should contain the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flee</span> <span class="kn">import</span> <span class="n">InputGeography</span>
+<span class="kn">from</span> <span class="nn">flare</span> <span class="kn">import</span> <span class="n">Ecosystem</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+  <span class="n">end_time</span> <span class="o">=</span> <span class="mi">100</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+          <span class="n">end_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">:</span>
+      <span class="n">input_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">input_dir</span> <span class="o">=</span> <span class="s2">&quot;test_input_csv&quot;</span>
+
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">:</span>
+      <span class="n">out_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">out_file</span> <span class="o">=</span> <span class="s2">&quot;flare-out.csv&quot;</span>
+
+
+  <span class="n">ig</span> <span class="o">=</span> <span class="n">InputGeography</span><span class="o">.</span><span class="n">InputGeography</span><span class="p">()</span>
+
+  <span class="n">ig</span><span class="o">.</span><span class="n">ReadLocationsFromCSV</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/locations.csv&quot;</span> <span class="o">%</span> <span class="n">input_dir</span><span class="p">)</span>
+
+  <span class="n">ig</span><span class="o">.</span><span class="n">ReadLinksFromCSV</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/routes.csv&quot;</span> <span class="o">%</span> <span class="n">input_dir</span><span class="p">)</span>
+
+  <span class="n">e</span> <span class="o">=</span> <span class="n">Ecosystem</span><span class="o">.</span><span class="n">Ecosystem</span><span class="p">()</span>
+
+  <span class="n">lm</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">StoreInputGeographyInEcosystem</span><span class="p">(</span><span class="n">ig</span><span class="p">)</span>
+
+  <span class="c1">#print(&quot;Network data loaded&quot;)</span>
+
+  <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">out_file</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+  <span class="n">output_header_string</span> <span class="o">=</span> <span class="s2">&quot;#Day,&quot;</span>
+
+  <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">locations</span><span class="p">:</span>
+      <span class="n">output_header_string</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="si">%s</span><span class="s2">,&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+  <span class="n">output_header_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_header_string</span><span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">end_time</span><span class="p">):</span>
+
+      <span class="n">e</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+
+      <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span>
+
+      <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">locations</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">flare</span><span class="p">:</span>
+              <span class="n">output</span> <span class="o">+=</span><span class="s2">&quot;,1&quot;</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="n">output</span> <span class="o">+=</span><span class="s2">&quot;,0&quot;</span>
+
+      <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+      <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+  <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For convenience, place this file in the same directory where you have placed the input files for the Mali conflict.</p>
+<ol class="arabic simple">
+<li><p>To run Flare, you can then type <cite>python3 run_flare.py 300 input_csv input_csv/conflicts.csv</cite>. This will generate a new <cite>conflicts.csv</cite> file, which you can load into Flee.</p></li>
+<li><p>To run Flee, stay within the same directory, and type <cite>python3 run.py input_csv source_data 300 &gt; out.csv</cite>.</p></li>
+<li><p>To visualize the result, you can use the <cite>out.csv</cite> file with your plotting scripts as you have done before in the Flee tutorial.</p></li>
+</ol>
+</section>
+<section id="advanced-optional-material">
+<h2>Advanced/Optional material<a class="headerlink" href="#advanced-optional-material" title="Link to this heading"></a></h2>
+<p>If you are interested in incorporating weather data with the Flee model (or your own), please drop us a line, as we are currently working on that topic.</p>
+<p>If you would like to learn more about how to use the model with supercomputers, and about tools to do uncertainty quantification, please have a look here: <a class="reference external" href="https://www.vecma-toolkit.eu/tutorials/">https://www.vecma-toolkit.eu/tutorials/</a> . Note that this page also contains tutorials on CFD models, Fusion-related models, and molecular dynamics models.</p>
+<p>A good general reference on agent-based simulation in general can be found here:</p>
+<ul class="simple">
+<li><p>C M Macal (2016) “Everything you need to know about agent-based modelling and simulation” Journal of Simulation 10(2) p. 144-15</p></li>
+</ul>
+<p>And lastly, if you wish to try out other agent-based modelling platforms, have a look at:</p>
+<ul class="simple">
+<li><p>NetLogo: <a class="reference external" href="https://ccl.northwestern.edu/netlogo/docs/">https://ccl.northwestern.edu/netlogo/docs/</a> or <a class="reference external" href="https://netlogoweb.org/">https://netlogoweb.org/</a> (web-based version)</p></li>
+<li><p>RePast: <a class="reference external" href="https://repast.github.io/docs.html">https://repast.github.io/docs.html</a></p></li>
+</ul>
+<p>Lastly, we maintain a GitHub repository giving information about nearly anything that we could think of in academia right here: <a class="reference external" href="http://www.github.com/djgroen/student-resources">http://www.github.com/djgroen/student-resources</a> .</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python-abm.html" class="btn btn-neutral float-left" title="Designing and prototyping your own simulation with Python3." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Derek Groen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

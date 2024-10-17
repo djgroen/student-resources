@@ -12,7 +12,7 @@
 * appendices: any length (does not count towards word limit)
 * references: Typically 20-100, and be sure not to list *only* website references.
 
-### Writing an introduction
+## Writing an introduction
 
 A good start is to first write your *aim* (1 sentence) and your objectives (typically 4-6 bullet points). Both aims and objectives need to be focused, and realistically achievable in the time frame of the project (typically 3 person months for FYPs).
 
