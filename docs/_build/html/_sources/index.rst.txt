@@ -17,10 +17,14 @@ Where to begin
    :caption: Essential Learning Resources
    :maxdepth: 2
 
+   onboarding_orientation.md
+   software_tools_and_setup.md
+   comm_and_collab.md
    task-management
    cs-level2-dissertation-writing.md
    reporting-technical-problems.md
    python-abm
+   
 
    
 
@@ -28,8 +32,9 @@ Where to begin
 .. toctree::
    :caption: Legacy Tutorials
    :maxdepth: 2
-
-   flee-par-couple
+Legacy Tutorials
+----------------
+There is content in this section
 
 FabSim3
 -------------------------------
