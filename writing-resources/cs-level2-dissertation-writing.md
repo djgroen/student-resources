@@ -1,4 +1,4 @@
-# General tips for Dissertation Writing for Level 2
+# Tips for Dissertation Writing
 
 ## Quantifying contributions
 * Make a table, containing in each column: 1-line summary of the contribution, type of contribution (design, frontend or backend), with whom you made the contribution, reference to the subsection in your portfolio that describes the contributions.
@@ -24,3 +24,6 @@ Describe:
 
 ## Learning outcomes
 * Add body to your motivations by referring to relevant sections for details, but do not omit the main justification for meeting the Learning Outcomes in the Table itself.
+
+
+
