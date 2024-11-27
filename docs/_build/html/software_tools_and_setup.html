@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Software Tools and Setup &mdash; Student Resources Living Release documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Onboarding and Orientation" href="onboarding_orientation.html" />
-    <link rel="prev" title="Educational resources for students" href="index.html" /> 
+    <link rel="next" title="Communication and Collaboration" href="comm_and_collab.html" />
+    <link rel="prev" title="Onboarding and Orientation" href="onboarding_orientation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,15 +44,35 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Essential Learning Resources</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="onboarding_orientation.html">Onboarding and Orientation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Software Tools and Setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installing-essential-development-tools-e-g-python-git-ides">Installing Essential Development Tools (e.g., Python, Git, IDEs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-essential-development-tools-e-g-python-git-ides">Installing Essential Development Tools (e.g., Python, Git, IDEs)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mac">Mac:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-python">1. Installing Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-git-and-github">2. Installing Git and Github</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-an-ide-e-g-vs-code">Installing an IDE (e.g. VS Code)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1. Installing Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-git">2. Installing Git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3. Installing an IDE (e.g., VS Code)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1. Installing Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2. Installing Git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3. Installing an IDE (e.g., VS Code)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-your-local-development-environment">Setting Up Your Local Development Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-control-with-git-and-github">Version Control with Git and GitHub</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basics-of-git-commits-branches-merges">Basics of Git (commits, branches, merges)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-git-issues-and-fixes">Common Git Issues and Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="onboarding_orientation.html">Onboarding and Orientation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comm_and_collab.html">Communication and Collaboration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="task-management.html">Basics of Task Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cs-level2-dissertation-writing.html">Tips for Dissertation Writing</a></li>
@@ -88,6 +108,157 @@
 <h1>Software Tools and Setup<a class="headerlink" href="#software-tools-and-setup" title="Link to this heading"></a></h1>
 <section id="installing-essential-development-tools-e-g-python-git-ides">
 <h2>Installing Essential Development Tools (e.g., Python, Git, IDEs)<a class="headerlink" href="#installing-essential-development-tools-e-g-python-git-ides" title="Link to this heading"></a></h2>
+<section id="mac">
+<h3>Mac:<a class="headerlink" href="#mac" title="Link to this heading"></a></h3>
+<section id="installing-python">
+<h4>1. Installing Python<a class="headerlink" href="#installing-python" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>macOS typically comes with Python preinstalled, but it’s recommended to install the latest version.</p></li>
+<li><p>Use Homebrew to manage installations:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Bash Shells:</span>
+<span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span>
+
+<span class="c1"># For Zsh Shells:</span>
+<span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">zsh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">python3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span> <span class="c1"># E.g. Python 3.9.20</span>
+<span class="n">pip3</span> <span class="o">--</span><span class="n">version</span> <span class="c1"># E.g. pip 24.3.1 from /Path/to/Python</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-git-and-github">
+<h4>2. Installing Git and Github<a class="headerlink" href="#installing-git-and-github" title="Link to this heading"></a></h4>
+<p>Version control is essential for managing changes to your codebase and collaborating with others.
+Git is a popular version control system, and <a class="reference external" href="https://github.com/">Github</a> is a cloud-based platform for hosting Git repositories which can be used directly in the command-line or as a GUI through their website or app.</p>
+<ul class="simple">
+<li><p>Install Git using Homebrew:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-an-ide-e-g-vs-code">
+<h4>Installing an IDE (e.g. VS Code)<a class="headerlink" href="#installing-an-ide-e-g-vs-code" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Simply follow the instructions <a class="reference external" href="https://code.visualstudio.com/">here</a></p></li>
+</ul>
+</section>
+</section>
+<section id="windows">
+<h3>Windows:<a class="headerlink" href="#windows" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>1. Installing Python<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Download Python from the <a class="reference external" href="https://www.python.org/">official website</a>.</p></li>
+<li><p>During installation, ensure you check the box <strong>“Add Python to PATH”</strong>.</p></li>
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">--</span><span class="n">version</span> <span class="n">pip</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-git">
+<h4>2. Installing Git<a class="headerlink" href="#installing-git" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Download Git from <a class="reference external" href="https://git-scm.com/">git-scm.com</a>.</p></li>
+<li><p>During installation:</p>
+<ul>
+<li><p>Select <strong>“Git from the command line and also from 3rd-party software”</strong>.</p></li>
+<li><p>Choose your preferred text editor (e.g., Vim, Nano, or VS Code).</p></li>
+<li><p>Leave other options as default unless you have specific preferences.</p></li>
+</ul>
+</li>
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>3. Installing an IDE (e.g., VS Code)<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Download Visual Studio Code from <a class="reference external" href="https://code.visualstudio.com/">VS Code for Windows</a>.</p></li>
+<li><p>Run the installer and follow the setup instructions.</p></li>
+<li><p>During installation:</p>
+<ul>
+<li><p>Ensure <strong>“Add to PATH”</strong> is selected.</p></li>
+</ul>
+</li>
+<li><p>Open a terminal to verify the <code class="docutils literal notranslate"><span class="pre">code</span></code> command:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="linux">
+<h3>Linux:<a class="headerlink" href="#linux" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>1. Installing Python<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Most Linux distributions come with Python preinstalled. Check the version:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Update or install Python if needed:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> 
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span> <span class="c1"># E.g., Python 3.9.20 </span>
+<span class="n">pip3</span> <span class="o">--</span><span class="n">version</span> <span class="c1"># E.g., pip 24.3.1 from /Path/to/Python</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>2. Installing Git<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Use your package manager to install Git:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span> <span class="c1"># For Debian/Ubuntu-based systems </span>
+<span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">git</span> <span class="c1"># For Red Hat-based systems</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the installation:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>3. Installing an IDE (e.g., VS Code)<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Download the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> package for Ubuntu/Debian or the <code class="docutils literal notranslate"><span class="pre">.rpm</span></code> package for Fedora from <a class="reference external" href="https://code.visualstudio.com/">VS Code for Linux</a>.</p></li>
+<li><p>Install the package:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">./</span><span class="n">code</span><span class="o">.</span><span class="n">deb</span> <span class="c1"># Debian-based systems </span>
+<span class="n">sudo</span> <span class="n">rpm</span> <span class="o">-</span><span class="n">i</span> <span class="n">code</span><span class="o">.</span><span class="n">rpm</span> <span class="c1"># Red Hat-based systems</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 <section id="setting-up-your-local-development-environment">
 <h2>Setting Up Your Local Development Environment<a class="headerlink" href="#setting-up-your-local-development-environment" title="Link to this heading"></a></h2>
@@ -107,8 +278,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Educational resources for students" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="onboarding_orientation.html" class="btn btn-neutral float-right" title="Onboarding and Orientation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="onboarding_orientation.html" class="btn btn-neutral float-left" title="Onboarding and Orientation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="comm_and_collab.html" class="btn btn-neutral float-right" title="Communication and Collaboration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

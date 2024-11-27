@@ -6,4 +6,4 @@
 
 ## Getting Started with Project Documentation
 
-## Expectations for Placement Students
+## Expectations for Students
