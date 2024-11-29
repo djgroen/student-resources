@@ -46,9 +46,19 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Onboarding and Orientation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-team-structure">Overview of Team Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-simulation-projects">Introduction to Simulation Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-simulation-projects">Introduction to Simulation Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fabsim3">FabSim3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flee">FLEE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#facs">FACS</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started-with-project-documentation">Getting Started with Project Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#expectations-for-students">Expectations for Students</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#communication-tools">Communication Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#slack">1. Slack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-drive">2. Google Drive</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="software_tools_and_setup.html">Software Tools and Setup</a></li>
@@ -87,10 +97,52 @@
 <h1>Onboarding and Orientation<a class="headerlink" href="#onboarding-and-orientation" title="Link to this heading"></a></h1>
 <section id="overview-of-team-structure">
 <h2>Overview of Team Structure<a class="headerlink" href="#overview-of-team-structure" title="Link to this heading"></a></h2>
+<p>Meet the 42Brunel Team!</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/derek-groen">Derek Groen</a></strong>: Lecturer in Simulation and Modelling at BUL and interdisciplinary researcher with primary focus on multiscale modelling and high-performance computing</p></li>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/diana-suleimenova1">Diana Suleimenova</a></strong>: Lecturer in Computer Science at BUL and researcher for Modelling and Simulation, Forced Displacement Prediction, Verification, Validation and Uncertainty Quantification</p></li>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/maziar-ghorbani1">Maziar Ghorbani</a></strong>: Associate Lecturer in Computer Science at BUL and research in Modeling and Simulations with focus on Large-scale High-performance Distributed Computing</p></li>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/yani-xue1">Yani Xue</a></strong>: Lecturer in Computer Science at BUL and research in Optimisation Problems, Evolutionary Computing, Data Analytics, Modelling and Simulation</p></li>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/alireza-jahani">Alireza Jahani</a></strong>: Research Fellow in Coupled Agent-based Modelling in the Computer Science Department at BUL and research in Agent-Based Modelling and Multi-Agent Systems</p></li>
+<li><p><strong>Laura Marshall Harbach</strong>: Post Doctoral Researcher at BUL in Agent-Based Modelling and Multi-Agent Systems</p></li>
+<li><p><strong><a class="reference external" href="https://www.linkedin.com/in/farzeen-nadeem">Farzeen Nadeem</a></strong>: Junior Developer Placement Student at BUL</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="introduction-to-simulation-projects">
 <h2>Introduction to Simulation Projects<a class="headerlink" href="#introduction-to-simulation-projects" title="Link to this heading"></a></h2>
+<p>Modeling and simulation involve creating physical and logical representations of real-world systems to produce data that aids in making predictions and informed decisions for NGOs or Governments. Our work takes a multidisciplinary approach, exploring ways to enhance and support modeling and simulation through research and collaborations with industry and other organisations.</p>
+<section id="fabsim3">
+<h3><a class="reference external" href="https://fabsim3.readthedocs.io/en/latest/">FabSim3</a><a class="headerlink" href="#fabsim3" title="Link to this heading"></a></h3>
+<p><strong>What it is:</strong>
+FabSim3 is a Python-based automation toolkit that helps streamline the execution of computational workflows. It simplifies repetitive tasks and integrates various tools and simulations into a cohesive and automated process.</p>
+<p><strong>Why it is used:</strong>
+FabSim3 is used to enhance the efficiency and reproducibility of research workflows. It allows users to easily configure, deploy, and run simulations on local machines or high-performance computing (HPC) clusters, making it ideal for scientific research and engineering projects requiring complex computational tasks.</p>
+</section>
+<section id="flee">
+<h3><a class="reference external" href="https://flee.readthedocs.io/en/master/">FLEE</a><a class="headerlink" href="#flee" title="Link to this heading"></a></h3>
+<p><strong>What it is:</strong>
+FLEE (Framework for Life Event Emulation) is an agent-based simulation framework designed to model the movement of displaced populations during crises, such as conflicts or natural disasters.</p>
+<p><strong>Why it is used:</strong>
+FLEE is used to simulate how individuals or groups respond to crises, helping researchers and policymakers analyse population movements and make data-driven decisions. Its ability to integrate real-world data makes it a valuable tool for addressing humanitarian challenges and improving response strategies.</p>
+<p><strong>How it works with FabSim3 and FabFlee:</strong>
+FLEE integrates seamlessly with FabSim3 through its plugin, FabFlee. FabSim3 automates the execution and management of FLEE simulations across various computational environments, such as local systems or high-performance computing (HPC) clusters. The FabFlee plugin enhances FLEE’s functionality by simplifying data management, automating workflows, and enabling large-scale, reproducible simulations of displaced population dynamics. This combination allows researchers to focus on refining models and analyzing results without getting bogged down by manual execution tasks.</p>
+</section>
+<section id="facs">
+<h3><a class="reference external" href="https://facs.readthedocs.io/en/latest/">FACS</a><a class="headerlink" href="#facs" title="Link to this heading"></a></h3>
+<p><strong>What it is:</strong>
+FACS (Flu and Coronavirus Simulator) is an agent-based simulation framework designed to model the spread of infectious diseases, such as influenza and COVID-19, in specific populations or geographic areas. Up to now, we have used it to model the spread of Covid-19 in various regions of Europe:</p>
+<ul class="simple">
+<li><p>The United Kingdom: Greater London, South-East and North-West of England</p></li>
+<li><p>Lithuania: The region of Klaipėda</p></li>
+<li><p>Romania: The city of Călărași</p></li>
+<li><p>Türkiye: The cities of Ankara and Istanbul</p></li>
+</ul>
+<p><strong>Why it is used:</strong>
+FACS is used to analyse how infectious diseases spread within communities and evaluate strategies to mitigate outbreaks, such as social distancing, vaccination, and mask mandates. Its ability to model detailed population behaviors and interactions makes it an essential tool for public health planning and policymaking.</p>
+<p><strong>How it works with FabSim3 and FabFACS:</strong>
+FACS can be integrated with FabSim3 through its plugin, FabFACS, to automate the execution of large-scale disease simulations.</p>
+</section>
 </section>
 <hr class="docutils" />
 <section id="getting-started-with-project-documentation">
@@ -167,7 +219,62 @@
 </ol>
 </li>
 </ul>
+</section>
 <hr class="docutils" />
+<section id="communication-tools">
+<h2>Communication Tools<a class="headerlink" href="#communication-tools" title="Link to this heading"></a></h2>
+<section id="slack">
+<h3>1. Slack<a class="headerlink" href="#slack" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Why We Use Slack:</strong></p>
+<ul>
+<li><p>Slack is the primary tool for team communication and collaboration.</p></li>
+<li><p>It allows for real-time messaging, file sharing, and quick discussions across various channels.</p></li>
+</ul>
+</li>
+<li><p><strong>Expectations for Using Slack:</strong></p>
+<ul>
+<li><p><strong>Be Responsive</strong>: Check messages regularly and respond promptly during working hours.</p></li>
+<li><p><strong>Use Channels Effectively</strong>:</p>
+<ul>
+<li><p>Post messages in the appropriate channels (e.g., #general, #project-updates).</p></li>
+<li><p>Use direct messages for private or sensitive discussions.</p></li>
+</ul>
+</li>
+<li><p><strong>Organize Communication</strong>:</p>
+<ul>
+<li><p>Use threads to keep conversations organized.</p></li>
+<li><p>Use reactions or emojis to acknowledge messages when a reply isn’t needed.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="google-drive">
+<h3>2. Google Drive<a class="headerlink" href="#google-drive" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Why We Use Google Drive:</strong></p>
+<ul>
+<li><p>Google Drive is used for document sharing, version control, and collaborative editing.</p></li>
+<li><p>It ensures that all team members have access to the latest versions of project documents and files.</p></li>
+</ul>
+</li>
+<li><p><strong>Expectations for Using Google Drive:</strong></p>
+<ul>
+<li><p><strong>Organize Files</strong>: Save documents in the correct project folders with clear and descriptive filenames.</p></li>
+<li><p><strong>Collaborate Effectively</strong>:</p>
+<ul>
+<li><p>Use comments and suggestions for feedback instead of directly editing shared files.</p></li>
+</ul>
+</li>
+<li><p><strong>Maintain Security</strong>: Do not share Drive links outside the team without permission.</p></li>
+<li><p><strong>Regular Updates</strong>: Ensure any new versions of documents are uploaded promptly to keep the team aligned.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
 </section>
 </section>
 

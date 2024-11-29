@@ -67,7 +67,16 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up-your-local-development-environment">Setting Up Your Local Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-virtual-environment">Setting Up a Virtual Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-virtual-environment">What is a Virtual Environment?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-is-it-useful">Why is it Useful?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-create-a-virtual-environment">Steps to Create a Virtual Environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-macos-and-linux-bash-or-zsh">1. For macOS and Linux (Bash or Zsh)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-windows">2. For Windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#version-control-with-git-and-github">Version Control with Git and GitHub</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#setting-up-git">1. Setting Up Git</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-github-account">2. Creating a GitHub Account</a></li>
@@ -279,8 +288,133 @@ Git is a popular version control system, and <a class="reference external" href=
 </section>
 </section>
 <hr class="docutils" />
-<section id="setting-up-your-local-development-environment">
-<h2>Setting Up Your Local Development Environment<a class="headerlink" href="#setting-up-your-local-development-environment" title="Link to this heading"></a></h2>
+<section id="setting-up-a-virtual-environment">
+<h2>Setting Up a Virtual Environment<a class="headerlink" href="#setting-up-a-virtual-environment" title="Link to this heading"></a></h2>
+<section id="what-is-a-virtual-environment">
+<h3>What is a Virtual Environment?<a class="headerlink" href="#what-is-a-virtual-environment" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>A <strong>virtual environment</strong> is an isolated Python environment that allows you to manage dependencies for a specific project without affecting the global Python installation on your system.</p></li>
+<li><p>It ensures that different projects can have different versions of libraries and tools, avoiding conflicts.</p></li>
+</ul>
+</section>
+<section id="why-is-it-useful">
+<h3>Why is it Useful?<a class="headerlink" href="#why-is-it-useful" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Prevents dependency conflicts between projects.</p></li>
+<li><p>Allows you to use different versions of the same library in separate projects.</p></li>
+<li><p>Keeps your global Python installation clean and organized.</p></li>
+</ul>
+</section>
+<section id="steps-to-create-a-virtual-environment">
+<h3>Steps to Create a Virtual Environment<a class="headerlink" href="#steps-to-create-a-virtual-environment" title="Link to this heading"></a></h3>
+<section id="for-macos-and-linux-bash-or-zsh">
+<h4>1. For macOS and Linux (Bash or Zsh)<a class="headerlink" href="#for-macos-and-linux-bash-or-zsh" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Step 1: Install <code class="docutils literal notranslate"><span class="pre">venv</span></code></strong> (usually included with Python 3.3+)</p>
+<ul>
+<li><p>Ensure Python is installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install Python if not already installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span>  <span class="c1"># For Linux (Debian-based)</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">python</span>       <span class="c1"># For macOS</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Step 2: Create a Virtual Environment</strong></p>
+<ul>
+<li><p>Navigate to your project directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">project</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Step 3: Activate the Virtual Environment</strong></p>
+<ul>
+<li><p>For Bash or Zsh terminals:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once activated, your terminal prompt will show <code class="docutils literal notranslate"><span class="pre">(venv)</span></code> to indicate you’re using the virtual environment.</p></li>
+</ul>
+</li>
+<li><p><strong>Step 4: Deactivate the Virtual Environment</strong></p>
+<ul>
+<li><p>To exit the virtual environment, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="for-windows">
+<h4>2. For Windows<a class="headerlink" href="#for-windows" title="Link to this heading"></a></h4>
+<ul>
+<li><p><strong>Step 1: Install <code class="docutils literal notranslate"><span class="pre">venv</span></code></strong> (usually included with Python 3.3+)</p>
+<ul>
+<li><p>Ensure Python is installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</li>
+<li><p>If not installed, download and install Python from <a class="reference external" href="https://www.python.org/">python.org</a>. During installation, ensure <strong>“Add Python to PATH”</strong> is selected.</p></li>
+</ul>
+</li>
+<li><p><strong>Step 2: Create a Virtual Environment</strong></p>
+<ul>
+<li><p>Open Command Prompt or PowerShell.</p></li>
+<li><p>Navigate to your project directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> \<span class="n">path</span>\<span class="n">to</span>\<span class="n">your</span>\<span class="n">project</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Step 3: Activate the Virtual Environment</strong></p>
+<ul>
+<li><p>In Command Prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>In PowerShell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">Activate</span><span class="o">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once activated, your terminal prompt will show <code class="docutils literal notranslate"><span class="pre">(venv)</span></code> to indicate you’re using the virtual environment.</p></li>
+</ul>
+</li>
+<li><p><strong>Step 4: Deactivate the Virtual Environment</strong></p>
+<ul>
+<li><p>To exit the virtual environment, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
 </section>
 <hr class="docutils" />
 <section id="version-control-with-git-and-github">

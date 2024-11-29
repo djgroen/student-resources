@@ -95,7 +95,90 @@ sudo apt install ./code.deb # Debian-based systems
 sudo rpm -i code.rpm # Red Hat-based systems
 ```
 ---
-## Setting Up Your Local Development Environment
+## Setting Up a Virtual Environment
+
+### What is a Virtual Environment?
+* A **virtual environment** is an isolated Python environment that allows you to manage dependencies for a specific project without affecting the global Python installation on your system.
+* It ensures that different projects can have different versions of libraries and tools, avoiding conflicts.
+
+### Why is it Useful?
+* Prevents dependency conflicts between projects.
+* Allows you to use different versions of the same library in separate projects.
+* Keeps your global Python installation clean and organized.
+
+### Steps to Create a Virtual Environment
+
+#### 1. For macOS and Linux (Bash or Zsh)
+* **Step 1: Install `venv`** (usually included with Python 3.3+)
+  - Ensure Python is installed:
+    ```
+    python3 --version
+    ```
+  - Install Python if not already installed:
+    ```
+    sudo apt install python3  # For Linux (Debian-based)
+    brew install python       # For macOS
+    ```
+
+* **Step 2: Create a Virtual Environment**
+  - Navigate to your project directory:
+    ```
+    cd /path/to/your/project
+    ```
+  - Create the virtual environment:
+    ```
+    python3 -m venv venv
+    ```
+
+* **Step 3: Activate the Virtual Environment**
+  - For Bash or Zsh terminals:
+    ```
+    source venv/bin/activate
+    ```
+  - Once activated, your terminal prompt will show `(venv)` to indicate you’re using the virtual environment.
+
+* **Step 4: Deactivate the Virtual Environment**
+  - To exit the virtual environment, run:
+    ```
+    deactivate
+    ```
+
+#### 2. For Windows
+* **Step 1: Install `venv`** (usually included with Python 3.3+)
+  - Ensure Python is installed:
+    ```
+    python --version
+    ```
+  - If not installed, download and install Python from [python.org](https://www.python.org/). During installation, ensure **"Add Python to PATH"** is selected.
+
+* **Step 2: Create a Virtual Environment**
+  - Open Command Prompt or PowerShell.
+  - Navigate to your project directory:
+    ```
+    cd \path\to\your\project
+    ```
+  - Create the virtual environment:
+    ```
+    python -m venv venv
+    ```
+
+* **Step 3: Activate the Virtual Environment**
+  - In Command Prompt:
+    ```
+    venv\Scripts\activate
+    ```
+  - In PowerShell:
+    ```
+    .\venv\Scripts\Activate.ps1
+    ```
+  - Once activated, your terminal prompt will show `(venv)` to indicate you’re using the virtual environment.
+
+* **Step 4: Deactivate the Virtual Environment**
+  - To exit the virtual environment, run:
+    ```
+    deactivate
+    ```
+
 ---
 ## Version Control with Git and GitHub
 ### 1. Setting Up Git
