@@ -3,11 +3,38 @@
 ## Overview of Team Structure
 Meet the 42Brunel Team!
 - **[Derek Groen](https://www.brunel.ac.uk/people/derek-groen)**: Lecturer in Simulation and Modelling at BUL and interdisciplinary researcher with primary focus on multiscale modelling and high-performance computing
+  - Codes Contributed to:
+    - FabSim3
+    - Flee
+    - FabFlee
+    - FabDummy
+    - FACS
+    - FabCovid19
+    - FabMuscle
+    - FabParticleDA
+    - FabMogp
 - **[Diana Suleimenova](https://www.brunel.ac.uk/people/diana-suleimenova1)**: Lecturer in Computer Science at BUL and researcher for Modelling and Simulation, Forced Displacement Prediction, Verification, Validation and Uncertainty Quantification
+  - Codes Contributed to:
+    - FabSim3
+    - Flee
+    - FabFlee
+    - VisualFlee
+    - EasyVVUQ
 - **[Maziar Ghorbani](https://www.brunel.ac.uk/people/maziar-ghorbani1)**: Associate Lecturer in Computer Science at BUL and research in Modeling and Simulations with focus on Large-scale High-performance Distributed Computing
+  - Codes Contributed to:
+      - FabSim3
+      - FACS
+      - FabCovid19
+      - Flee_scenario_builder
+      - FabTSP
+      - EasyVVUQ
 - **[Yani Xue](https://www.brunel.ac.uk/people/yani-xue1)**: Lecturer in Computer Science at BUL and research in Optimisation Problems, Evolutionary Computing, Data Analytics, Modelling and Simulation
+  - Codes Contributed to:
+    - FabSim3
 - **[Alireza Jahani](https://www.brunel.ac.uk/people/alireza-jahani)**: Research Fellow in Coupled Agent-based Modelling in the Computer Science Department at BUL and research in Agent-Based Modelling and Multi-Agent Systems
-- **Laura Marshall Harbach**: Post Doctoral Researcher at BUL in Agent-Based Modelling and Multi-Agent Systems
+- **Laura Marshall Harbach**: Post Doctoral Researcher at BUL in Agent-Based Modelling, Multi-Agent Systems and Uncertainty Quantification
+  - Codes Contributed to:
+      - FabSim3
 - **[Farzeen Nadeem](https://www.linkedin.com/in/farzeen-nadeem)**: Junior Developer Placement Student at BUL
 ---
 ## Introduction to Simulation Projects
@@ -15,14 +42,14 @@ Modeling and simulation involve creating physical and logical representations of
 
 ### [FabSim3](https://fabsim3.readthedocs.io/en/latest/)
 **What it is:**
-FabSim3 is a Python-based automation toolkit that helps streamline the execution of computational workflows. It simplifies repetitive tasks and integrates various tools and simulations into a cohesive and automated process.
+FabSim3 is a Python-based automation toolkit that helps streamline the execution of computational workflows. It simplifies repetitive tasks and integrates various tools and simulations into a cohesive and automated process. The main paper describing it can be found [here](https://bura.brunel.ac.uk/bitstream/2438/25622/3/FullText.pdf)
 
 **Why it is used:**
 FabSim3 is used to enhance the efficiency and reproducibility of research workflows. It allows users to easily configure, deploy, and run simulations on local machines or high-performance computing (HPC) clusters, making it ideal for scientific research and engineering projects requiring complex computational tasks.
 
 ### [FLEE](https://flee.readthedocs.io/en/master/)
 **What it is:**
-FLEE (Framework for Life Event Emulation) is an agent-based simulation framework designed to model the movement of displaced populations during crises, such as conflicts or natural disasters.
+FLEE is an agent-based simulation framework designed to model the movement of displaced populations during crises, such as conflicts or natural disasters. The main paper describing it can be found [here](https://bura.brunel.ac.uk/bitstream/2438/29347/1/FullText.pdf)
 
 **Why it is used:**
 FLEE is used to simulate how individuals or groups respond to crises, helping researchers and policymakers analyse population movements and make data-driven decisions. Its ability to integrate real-world data makes it a valuable tool for addressing humanitarian challenges and improving response strategies.
@@ -41,6 +68,8 @@ FACS (Flu and Coronavirus Simulator) is an agent-based simulation framework desi
 - Romania: The city of Călărași
 
 - Türkiye: The cities of Ankara and Istanbul
+
+The main paper describing it can be found [here](https://bura.brunel.ac.uk/bitstream/2438/20914/4/FullText.pdf)
 
 **Why it is used:**
 FACS is used to analyse how infectious diseases spread within communities and evaluate strategies to mitigate outbreaks, such as social distancing, vaccination, and mask mandates. Its ability to model detailed population behaviors and interactions makes it an essential tool for public health planning and policymaking.
@@ -96,9 +125,10 @@ FACS can be integrated with FabSim3 through its plugin, FabFACS, to automate the
 * **Why We Use Slack:**
   - Slack is the primary tool for team communication and collaboration.
   - It allows for real-time messaging, file sharing, and quick discussions across various channels.
+  - NOTE: Messages on Slack disappear after 90 days so it should not be used for archiving purposes (e.g. storing papers or important debugging discussions).
 
 * **Expectations for Using Slack:**
-  - **Be Responsive**: Check messages regularly and respond promptly during working hours.
+  - **Be Responsive**: Check messages regularly and try to respond within a day.
   - **Use Channels Effectively**:
     - Post messages in the appropriate channels (e.g., #general, #project-updates).
     - Use direct messages for private or sensitive discussions.
