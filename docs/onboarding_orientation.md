@@ -32,9 +32,12 @@ Meet the 42Brunel Team!
   - Codes Contributed to:
     - FabSim3
 - **[Alireza Jahani](https://www.brunel.ac.uk/people/alireza-jahani)**: Research Fellow in Coupled Agent-based Modelling in the Computer Science Department at BUL and research in Agent-Based Modelling and Multi-Agent Systems
+  - Codes Contributed to:
+      - (D)Flee
 - **Laura Marshall Harbach**: Post Doctoral Researcher at BUL in Agent-Based Modelling, Multi-Agent Systems and Uncertainty Quantification
   - Codes Contributed to:
       - FabSim3
+      - (D)Flee
 - **[Farzeen Nadeem](https://www.linkedin.com/in/farzeen-nadeem)**: Junior Developer Placement Student at BUL
 ---
 ## Introduction to Simulation Projects
