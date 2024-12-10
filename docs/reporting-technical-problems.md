@@ -78,3 +78,85 @@ Consider using a table to record your findings. Below is a simple template you c
 - **Notes**: Any additional comments about the test, such as reasons for failure or insights for improvements.
 
 This structured approach allows you to maintain clear records of your unit tests, making it easier to communicate findings to your team and prioritize future work based on test results.
+
+## Coding with PEP 8 Guidelines
+
+### What is PEP 8?
+* PEP 8 is the official style guide for Python code. It provides conventions for writing clean, readable, and maintainable code.
+* Following PEP 8 makes your code easier to understand and collaborate on with others, ensuring consistency across projects.
+
+
+### Key Guidelines from PEP 8
+
+#### 1. **Indentation**
+* Use 4 spaces per indentation level. Do not use tabs.
+```python
+# Correct:
+def example_function():
+    print("Hello, World!")
+
+# Incorrect:
+def example_function(): 
+    print("Hello, World!")  # Uses tabs
+```
+#### 2. **Line Length**
+* Limit all lines to a maximum of 79 characters.
+* For comments or docstrings, limit lines to 72 characters.
+```python
+# Correct:
+def example_function(argument):
+    print(f"Argument value is: {argument}")
+
+# Incorrect:
+def example_function(argument): print(f"Argument value is: {argument}")  # Too long
+```
+#### 3. **Blank Lines**
+* Use blank lines to separate functions, classes, and logical sections of code.
+* Use two blank lines before top-level functions or class definitions, and one blank line inside functions to separate logic.
+
+#### 4. **Naming Conventions**
+* Use descriptive and readable names for variables, functions, and classes:
+    - Function names: snake_case
+    - Variable names: snake_case
+    - Class names: CamelCase
+```python
+# Correct:
+class MyClass:
+    def my_function(self):
+        my_variable = 10
+
+# Incorrect:
+class myclass:
+    def MyFunction(self):
+        MyVariable = 10
+```
+#### 5. Imports
+* Group imports into three sections, separated by blank lines:
+  1. Standard library imports.
+  2. Third-party library imports.
+  3. Local application imports.
+* Avoid wildcard imports (e.g., `from module import *`).
+```python
+# Correct:
+import os import sys
+
+import numpy as np import pandas as pd
+
+from myproject import mymodule
+```
+#### 6. Spacing
+* Avoid extra spaces in expressions or statements.
+```python
+# Correct:
+result = x * (y + z)
+# Incorrect:
+result = x * ( y + z )
+```
+#### 7. Comments
+* Write clear and concise comments that explain the "why," not just the "what."
+* Use `#` for inline comments and triple quotes for docstrings.
+```python
+def calculate_area(length, width): """Return the area of a rectangle.""" 
+return length * width
+```
+
