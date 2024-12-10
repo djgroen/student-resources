@@ -48,7 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-team-structure">Overview of Team Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#introduction-to-simulation-projects">Introduction to Simulation Projects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#fabsim3">FabSim3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flee">FLEE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flee">Flee</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#facs">FACS</a></li>
 </ul>
 </li>
@@ -57,6 +57,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#communication-tools">Communication Tools</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#slack">1. Slack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#google-drive">2. Google Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#microsoft-teams">3. Microsoft Teams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#email">4. Email</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github">5. GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -99,7 +102,7 @@
 <h2>Overview of Team Structure<a class="headerlink" href="#overview-of-team-structure" title="Link to this heading"></a></h2>
 <p>Meet the 42Brunel Team!</p>
 <ul class="simple">
-<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/derek-groen">Derek Groen</a></strong>: Lecturer in Simulation and Modelling at BUL and interdisciplinary researcher with primary focus on multiscale modelling and high-performance computing</p>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/derek-groen">Derek Groen</a></strong>: Reader in Simulation and Modelling at BUL and interdisciplinary researcher with primary focus on multiscale modelling and high-performance computing</p>
 <ul>
 <li><p>Codes Contributed to:</p>
 <ul>
@@ -152,12 +155,21 @@
 </li>
 </ul>
 </li>
-<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/alireza-jahani">Alireza Jahani</a></strong>: Research Fellow in Coupled Agent-based Modelling in the Computer Science Department at BUL and research in Agent-Based Modelling and Multi-Agent Systems</p></li>
+<li><p><strong><a class="reference external" href="https://www.brunel.ac.uk/people/alireza-jahani">Alireza Jahani</a></strong>: Associate Lecturer in Computer Science Department at BUL and research in Agent-Based Modelling and Multi-Agent Systems</p>
+<ul>
+<li><p>Codes Contributed to:</p>
+<ul>
+<li><p>(D)Flee</p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><strong>Laura Marshall Harbach</strong>: Post Doctoral Researcher at BUL in Agent-Based Modelling, Multi-Agent Systems and Uncertainty Quantification</p>
 <ul>
 <li><p>Codes Contributed to:</p>
 <ul>
 <li><p>FabSim3</p></li>
+<li><p>(D)Flee</p></li>
 </ul>
 </li>
 </ul>
@@ -177,16 +189,18 @@ FabSim3 is a Python-based automation toolkit that helps streamline the execution
 FabSim3 is used to enhance the efficiency and reproducibility of research workflows. It allows users to easily configure, deploy, and run simulations on local machines or high-performance computing (HPC) clusters, making it ideal for scientific research and engineering projects requiring complex computational tasks.</p>
 </section>
 <section id="flee">
-<h3><a class="reference external" href="https://flee.readthedocs.io/en/master/">FLEE</a><a class="headerlink" href="#flee" title="Link to this heading"></a></h3>
+<h3><a class="reference external" href="https://flee.readthedocs.io/en/master/">Flee</a><a class="headerlink" href="#flee" title="Link to this heading"></a></h3>
+<p><img alt="Sample network graph" src="_images/network.png" /></p>
 <p><strong>What it is:</strong>
-FLEE is an agent-based simulation framework designed to model the movement of displaced populations during crises, such as conflicts or natural disasters. The main paper describing it can be found <a class="reference external" href="https://bura.brunel.ac.uk/bitstream/2438/29347/1/FullText.pdf">here</a></p>
+FLee is an agent-based simulation framework designed to model the movement of displaced populations during crises, such as conflicts or natural disasters. The main paper describing it can be found <a class="reference external" href="https://bura.brunel.ac.uk/bitstream/2438/29347/1/FullText.pdf">here</a></p>
 <p><strong>Why it is used:</strong>
-FLEE is used to simulate how individuals or groups respond to crises, helping researchers and policymakers analyse population movements and make data-driven decisions. Its ability to integrate real-world data makes it a valuable tool for addressing humanitarian challenges and improving response strategies.</p>
+Flee is used to simulate how individuals or groups respond to crises, helping researchers and policymakers analyse population movements and make data-driven decisions. Its ability to integrate real-world data makes it a valuable tool for addressing humanitarian challenges and improving response strategies.</p>
 <p><strong>How it works with FabSim3 and FabFlee:</strong>
-FLEE integrates seamlessly with FabSim3 through its plugin, FabFlee. FabSim3 automates the execution and management of FLEE simulations across various computational environments, such as local systems or high-performance computing (HPC) clusters. The FabFlee plugin enhances FLEE’s functionality by simplifying data management, automating workflows, and enabling large-scale, reproducible simulations of displaced population dynamics. This combination allows researchers to focus on refining models and analyzing results without getting bogged down by manual execution tasks.</p>
+Flee integrates seamlessly with FabSim3 through its plugin, FabFlee. FabSim3 automates the execution and management of FLEE simulations across various computational environments, such as local systems or high-performance computing (HPC) clusters. The FabFlee plugin enhances Flee’s functionality by simplifying data management, automating workflows, and enabling large-scale, reproducible simulations of displaced population dynamics. This combination allows researchers to focus on refining models and analyzing results without getting bogged down by manual execution tasks.</p>
 </section>
 <section id="facs">
 <h3><a class="reference external" href="https://facs.readthedocs.io/en/latest/">FACS</a><a class="headerlink" href="#facs" title="Link to this heading"></a></h3>
+<p><img alt="FACS Graph" src="_images/validateplot.png" /></p>
 <p><strong>What it is:</strong>
 FACS (Flu and Coronavirus Simulator) is an agent-based simulation framework designed to model the spread of infectious diseases, such as influenza and COVID-19, in specific populations or geographic areas. Up to now, we have used it to model the spread of Covid-19 in various regions of Europe:</p>
 <ul class="simple">
@@ -241,35 +255,32 @@ FACS can be integrated with FabSim3 through its plugin, FabFACS, to automate the
 <ol class="arabic simple">
 <li><p><strong>Communicate Effectively</strong>:</p>
 <ul>
-<li><p>Attend all team meetings and actively participate.</p></li>
+<li><p>Try to attend all team meetings and let us know if you can’t.</p></li>
 <li><p>Share progress regularly through updates or reports.</p></li>
 <li><p>Ask questions when in doubt.</p></li>
+<li><p>It is helpful to criticise team members openly</p></li>
 </ul>
 </li>
 <li><p><strong>Collaborate and Learn</strong>:</p>
 <ul>
-<li><p>Work effectively with teammates on shared tasks.</p></li>
-<li><p>Be open to feedback and use it to improve your work.</p></li>
+<li><p>Try to work in parallel on team tasks.</p></li>
+<li><p>Distribute workload</p></li>
+<li><p>Use feedback to improve work.</p></li>
 <li><p>Take the initiative to learn new tools, concepts, or methods.</p></li>
 </ul>
 </li>
 <li><p><strong>Follow Best Practices</strong>:</p>
 <ul>
-<li><p>Use Git for version control and follow branching policies.</p></li>
-<li><p>Document your code and processes thoroughly.</p></li>
-<li><p>Adhere to the project’s coding standards and guidelines.</p></li>
-</ul>
-</li>
-<li><p><strong>Be Professional</strong>:</p>
-<ul>
-<li><p>Manage your time effectively to meet deadlines.</p></li>
-<li><p>Treat teammates and mentors with respect.</p></li>
-<li><p>Take ownership of your assigned tasks and responsibilities.</p></li>
+<li><p>Use Git for version control.</p></li>
+<li><p>Use GitHub Issues to raise issues.</p></li>
+<li><p>Document your code systematically.</p></li>
+<li><p>Adhere to the PEP8 guidelines for Python coding.</p></li>
 </ul>
 </li>
 <li><p><strong>Focus on Problem-Solving</strong>:</p>
 <ul>
-<li><p>Approach challenges with a positive and solution-driven mindset.</p></li>
+<li><p>Take ownership of your assigned tasks and responsibilities.</p></li>
+<li><p>Identify problems which could block progress early.</p></li>
 <li><p>Break down problems into manageable parts and seek help when needed.</p></li>
 <li><p>Share your findings and ideas with the team for collective progress.</p></li>
 </ul>
@@ -329,6 +340,65 @@ FACS can be integrated with FabSim3 through its plugin, FabFACS, to automate the
 </li>
 <li><p><strong>Maintain Security</strong>: Do not share Drive links outside the team without permission.</p></li>
 <li><p><strong>Regular Updates</strong>: Ensure any new versions of documents are uploaded promptly to keep the team aligned.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="microsoft-teams">
+<h3>3. Microsoft Teams<a class="headerlink" href="#microsoft-teams" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Why We Use Teams:</strong></p>
+<ul>
+<li><p>Microsoft Teams is used for scheduled meetings, video calls, and formal discussions.</p></li>
+<li><p>It serves as a central hub for coordinating team activities and sharing meeting notes.</p></li>
+</ul>
+</li>
+<li><p><strong>Expectations for Using Teams:</strong></p>
+<ul>
+<li><p><strong>Be Prepared</strong>: Join meetings on time with any relevant materials ready.</p></li>
+<li><p><strong>Collaborate During Meetings</strong>:</p>
+<ul>
+<li><p>Use the chat feature for additional input during calls.</p></li>
+<li><p>Share screens or files to enhance discussions.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="email">
+<h3>4. Email<a class="headerlink" href="#email" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Why We Use Email:</strong></p>
+<ul>
+<li><p>Email is used for formal communication, official updates, and sharing information with external stakeholders.</p></li>
+<li><p>It is a reliable method for documenting important discussions.</p></li>
+</ul>
+</li>
+<li><p><strong>Expectations for Using Email:</strong></p>
+<ul>
+<li><p><strong>Professional Tone</strong>: Use clear and concise language, proper formatting, and a polite tone.</p></li>
+<li><p><strong>Timely Responses</strong>: Try to respond to emails within a day.</p></li>
+<li><p><strong>Subject Clarity</strong>: Use descriptive subject lines to make emails easy to understand and track.</p></li>
+<li><p><strong>Attachments and Links</strong>: Ensure any attachments or links are relevant, properly labeled, and functional.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="github">
+<h3>5. GitHub<a class="headerlink" href="#github" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Why We Use GitHub:</strong></p>
+<ul>
+<li><p>GitHub is the primary platform for managing version control and hosting project code.</p></li>
+<li><p>It allows for collaborative coding, issue tracking, and peer reviews.</p></li>
+</ul>
+</li>
+<li><p><strong>Expectations for Using GitHub:</strong></p>
+<ul>
+<li><p><strong>Commit Regularly</strong>: Write clear and descriptive commit messages to make the code history easy to understand.</p></li>
+<li><p><strong>Collaborate on Pull Requests</strong>: Request reviews for your pull requests and provide constructive feedback on others’ code.</p></li>
+<li><p><strong>Report and Resolve Issues</strong>: Use the issue tracker to document bugs, features, or tasks and keep them updated with progress.</p></li>
 </ul>
 </li>
 </ul>

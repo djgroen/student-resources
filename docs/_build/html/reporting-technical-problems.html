@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Essential Learning Resources</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="onboarding_orientation.html">Onboarding and Orientation lala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="onboarding_orientation.html">Onboarding and Orientation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software_tools_and_setup.html">Software Tools and Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comm_and_collab.html">Communication and Collaboration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="task-management.html">Basics of Task Management</a></li>
@@ -59,6 +59,20 @@
 <li class="toctree-l4"><a class="reference internal" href="#write-custom-print-functions-for-test-results">3. Write Custom Print Functions for Test Results</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#example-custom-print-function">Example: Custom Print Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#document-your-findings">4. Document Your Findings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-with-pep-8-guidelines">Coding with PEP 8 Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-pep-8">What is PEP 8?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-guidelines-from-pep-8">Key Guidelines from PEP 8</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#indentation">1. <strong>Indentation</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#line-length">2. <strong>Line Length</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blank-lines">3. <strong>Blank Lines</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#naming-conventions">4. <strong>Naming Conventions</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imports">5. Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spacing">6. Spacing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comments">7. Comments</a></li>
 </ul>
 </li>
 </ul>
@@ -192,6 +206,123 @@
 </ul>
 <p>This structured approach allows you to maintain clear records of your unit tests, making it easier to communicate findings to your team and prioritize future work based on test results.</p>
 </section>
+</section>
+</section>
+</section>
+<section id="coding-with-pep-8-guidelines">
+<h2>Coding with PEP 8 Guidelines<a class="headerlink" href="#coding-with-pep-8-guidelines" title="Link to this heading"></a></h2>
+<section id="what-is-pep-8">
+<h3>What is PEP 8?<a class="headerlink" href="#what-is-pep-8" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>PEP 8 is the official style guide for Python code. It provides conventions for writing clean, readable, and maintainable code.</p></li>
+<li><p>Following PEP 8 makes your code easier to understand and collaborate on with others, ensuring consistency across projects.</p></li>
+</ul>
+</section>
+<section id="key-guidelines-from-pep-8">
+<h3>Key Guidelines from PEP 8<a class="headerlink" href="#key-guidelines-from-pep-8" title="Link to this heading"></a></h3>
+<section id="indentation">
+<h4>1. <strong>Indentation</strong><a class="headerlink" href="#indentation" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Use 4 spaces per indentation level. Do not use tabs.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct:</span>
+<span class="k">def</span> <span class="nf">example_function</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Incorrect:</span>
+<span class="k">def</span> <span class="nf">example_function</span><span class="p">():</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>  <span class="c1"># Uses tabs</span>
+</pre></div>
+</div>
+</section>
+<section id="line-length">
+<h4>2. <strong>Line Length</strong><a class="headerlink" href="#line-length" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Limit all lines to a maximum of 79 characters.</p></li>
+<li><p>For comments or docstrings, limit lines to 72 characters.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct:</span>
+<span class="k">def</span> <span class="nf">example_function</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Argument value is: </span><span class="si">{</span><span class="n">argument</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Incorrect:</span>
+<span class="k">def</span> <span class="nf">example_function</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Argument value is: </span><span class="si">{</span><span class="n">argument</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Too long</span>
+</pre></div>
+</div>
+</section>
+<section id="blank-lines">
+<h4>3. <strong>Blank Lines</strong><a class="headerlink" href="#blank-lines" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Use blank lines to separate functions, classes, and logical sections of code.</p></li>
+<li><p>Use two blank lines before top-level functions or class definitions, and one blank line inside functions to separate logic.</p></li>
+</ul>
+</section>
+<section id="naming-conventions">
+<h4>4. <strong>Naming Conventions</strong><a class="headerlink" href="#naming-conventions" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Use descriptive and readable names for variables, functions, and classes:</p>
+<ul>
+<li><p>Function names: snake_case</p></li>
+<li><p>Variable names: snake_case</p></li>
+<li><p>Class names: CamelCase</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct:</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">my_variable</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Incorrect:</span>
+<span class="k">class</span> <span class="nc">myclass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">MyVariable</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+<section id="imports">
+<h4>5. Imports<a class="headerlink" href="#imports" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Group imports into three sections, separated by blank lines:</p>
+<ol class="arabic simple">
+<li><p>Standard library imports.</p></li>
+<li><p>Third-party library imports.</p></li>
+<li><p>Local application imports.</p></li>
+</ol>
+</li>
+<li><p>Avoid wildcard imports (e.g., <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module</span> <span class="pre">import</span> <span class="pre">*</span></code>).</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct:</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">myproject</span> <span class="kn">import</span> <span class="n">mymodule</span>
+</pre></div>
+</div>
+</section>
+<section id="spacing">
+<h4>6. Spacing<a class="headerlink" href="#spacing" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Avoid extra spaces in expressions or statements.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correct:</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+<span class="c1"># Incorrect:</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comments">
+<h4>7. Comments<a class="headerlink" href="#comments" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Write clear and concise comments that explain the “why,” not just the “what.”</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">#</span></code> for inline comments and triple quotes for docstrings.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Return the area of a rectangle.&quot;&quot;&quot;</span> 
+<span class="k">return</span> <span class="n">length</span> <span class="o">*</span> <span class="n">width</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

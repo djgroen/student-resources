@@ -1,7 +1,7 @@
 # Software Tools and Setup
 
 ## Installing Essential Development Tools (e.g., Python, Git, IDEs)
-### Mac:
+### Mac
 #### 1. Installing Python
 * macOS typically comes with Python preinstalled, but it's recommended to install the latest version.
 * Use Homebrew to manage installations:
@@ -34,7 +34,7 @@ git --version
 ```
 #### Installing an IDE (e.g. VS Code)
 * Simply follow the instructions [here](https://code.visualstudio.com/)
-### Windows:
+### Windows
 #### 1. Installing Python
 * Download Python from the [official website](https://www.python.org/).
 * During installation, ensure you check the box **"Add Python to PATH"**.
@@ -61,7 +61,7 @@ git --version
 ```
 code --version
 ```
-### Linux:
+### Linux
 #### 1. Installing Python
 * Most Linux distributions come with Python preinstalled. Check the version:
 ```
