@@ -2,6 +2,8 @@
 
 ## Phases of a paper
 
+There are different ways to write a paper, but normally I go through it in the following order:
+
 1. **Securing scientific contribution**:
     1. Obtain the baseline research output (or research)
     2. Clarify what is actually a new contribution.
@@ -24,3 +26,10 @@
     3. Polish: check figures to see if they are accurate, and if they can be made easier to understand or simpler.
     4. Trim: shorten verbose sections or move parts to the supplementary material.
     5. Extend: introduce new research results or perspectives to strengthen the paper.
+  
+### Justification
+
+* Securing the scientific contribution is the first priority, because you can't publish anything if you don't have it. In addition, the scientific contribution determines largely how much potential a paper has, and therefore shapes the whole writing process after that.
+* Securing the narrative is the second priority, because while doing this you learn how the contribution will be presented, and what supporting evidence, arguments and materials you would like to include to get your key contributions across and clarify their importance. All these elements will inform the later steps in the process.
+* Drafting the paper is the third priority, because there is no point in polishing, trimming and extending a paper when parts are still missing. It is really important that all sections end up with some reasonable-quality content before moving to the last phase, as one important thing to get right is consistency and consistent quality between all the different sections of the paper.
+
