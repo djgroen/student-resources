@@ -18,9 +18,9 @@
 3. Drafting the paper:
     1. Fill every section with concise and appropriate content.
     2. Particularly pay attention to introduction (state problem clearly) and background (make sure you cover all relevant related work).
-    3. Iteratively polish, trim and extend:
-        1. Polish: identify weak sections in a (peer?) review, and work to improve the writing / narrative quality.
-        2. Polish: check paper for consistency between sections in terms of narrative, and consistent use of language and acronyms.
-        3. Polish: check figures to see if they are accurate, and if they can be made easier to understand or simpler.
-        4. Trim: shorten verbose sections or move parts to the supplementary material.
-        5. Extend: introduce new research results or perspectives to strengthen the paper.
+4. Iteratively polish, trim and extend:
+    1. Polish: identify weak sections in a (peer?) review, and work to improve the writing / narrative quality.
+    2. Polish: check paper for consistency between sections in terms of narrative, and consistent use of language and acronyms.
+    3. Polish: check figures to see if they are accurate, and if they can be made easier to understand or simpler.
+    4. Trim: shorten verbose sections or move parts to the supplementary material.
+    5. Extend: introduce new research results or perspectives to strengthen the paper.
