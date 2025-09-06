@@ -22,6 +22,7 @@ Where to begin
    comm_and_collab.md
    task-management
    cs-level2-dissertation-writing.md
+   paper-writing.md
    reporting-technical-problems.md
    python-abm
    
